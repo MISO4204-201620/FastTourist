@@ -15,7 +15,9 @@ import java.util.List;
 @Table(name="servicios")
 @NamedQueries({
 	@NamedQuery(name="Servicio.findAll", query="SELECT s FROM Servicio s"),
-	@NamedQuery(name="Servicio.findById", query="SELECT s FROM Servicio s where s.idservicios = :id"),
+	@NamedQuery(name="Servicio.findById", query="SELECT s FROM Servicio s where s.activo = :id"),
+	@NamedQuery(name="Servicio.findByAlimentacion", query="SELECT s FROM Servicio s where s.activo=1 and s.categoria=2"),
+	@NamedQuery(name="Servicio.findByProveedoresByAlimentacion", query="SELECT DISTINCT(s.usuario) FROM Servicio s where s.alimentacion = alimentacion"),
 }) 
 
 public class Servicio implements Serializable {

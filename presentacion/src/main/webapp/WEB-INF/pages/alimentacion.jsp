@@ -6,7 +6,7 @@
 <body>
 <div class="block" style="text-align:left !important">					
 	<h4 class="title"><span class="text"><strong>Alimentación</strong></span></h4>
-	<form action="#" method="post" class="form-stacked">					
+	<form action="#" method="post" class="form-stacked">						
 		<div class="control-group">
 			<label class="control-label">¿Qué tanto quieres comer?</label>
 			<label class="radio">
