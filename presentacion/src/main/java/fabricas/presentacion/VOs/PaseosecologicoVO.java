@@ -14,6 +14,11 @@ public class PaseosecologicoVO implements Serializable {
 
 	private String nombre;
 
+	private String descripcion;
+	private String fotos;
+	private int		precio;
+	private String requerimientos;
+	private int duracion;
 	
 	private List<ServicioVO> servicioVO;
 
@@ -51,4 +56,46 @@ public class PaseosecologicoVO implements Serializable {
 	public void setServicioVO(List<ServicioVO> servicioVO) {
 		this.servicioVO = servicioVO;
 	}
+	
+	
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getFotos() {
+		return this.fotos;
+	}
+
+	public void setFotos(String fotos) {
+		this.fotos = fotos;
+	}
+
+	public int getPrecio() {
+		return this.precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
+	public String getRequerimientos() {
+		return this.requerimientos;
+	}
+
+	public void setRequerimientos(String requerimientos) {
+		this.requerimientos = requerimientos;
+	}
+
+	public int getDuracion() {
+		return this.duracion;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
 }
