@@ -50,24 +50,60 @@
 								<div class="control-group">
 									<label class="control-label">Usuario</label>
 									<div class="controls">
-										<input type="text" placeholder="Ingresa tu nombre de usuario" class="input-xlarge">
+										<input type="text" name="nombre" placeholder="Ingresa tu nombre de usuario" class="input-xlarge">
 									</div>
 								</div>
 								<div class="control-group">
+									<label class="control-label">Apellidos</label>
+									<div class="controls">
+										<input type="text" name="apellido" class="input-medium">
+									</div>
+								<div class="control-group">
 									<label class="control-label">Email:</label>
 									<div class="controls">
-										<input type="password" placeholder="Ingresa tu email" class="input-xlarge">
+										<input type="text" name="email" placeholder="Ingresa tu email" class="input-xlarge">
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Contraseña:</label>
 									<div class="controls">
-										<input type="password" placeholder="Ingresa tu contraseña" class="input-xlarge">
+										<input type="password" name="password" placeholder="Ingresa tu contraseña" class="input-xlarge">
 									</div>
-								</div>							                            
-								<hr>
-								<div class="actions"><input tabindex="9" class="btn btn-inverse large" type="submit" value="Crear tu cuenta"></div>
-							</fieldset>
+								</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Dirección</label>
+									<div class="controls">
+										<input type="text" name="direccion" class="input-medium">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Teléfono</label>
+									<div class="controls">
+										<input type="text" name="telefono" class="input-medium">
+									</div>
+								</div>
+
+								<div class="control-group">
+									<table>
+										<tr>
+											<td width="100px"><label class="control-label">Tipo Usuario</label></td>
+										</tr>
+										<tr>
+											<td><select class="input-mini" name="tipoUsuario">
+													<option value="1">Proveedor</option>
+													<option value="2">Cliente</option>
+											</select></td>
+										</tr>
+									</table>
+								</div>
+
+					<hr>
+						<div class="actions">
+							<input tabindex="9" class="btn btn-inverse large" type="submit"
+								value="Crear tu cuenta">
+						</div>
+				</fieldset>
 						</form>					
 					</div>				
 				</div>

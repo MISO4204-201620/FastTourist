@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="paseosecologicos")
-@NamedQuery(name="Paseosecologico.findAll", query="SELECT p FROM Paseosecologico p")
+@NamedQuery(name="Paseosecologico.findAll", query="SELECT p FROM Paseosecologicos p")
 public class Paseosecologico implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -25,6 +25,12 @@ public class Paseosecologico implements Serializable {
 	private String lugar;
 
 	private String nombre;
+
+	private String descripcion;
+	private String fotos;
+	private int		precio;
+	private String requerimientos;
+	private int duracion;
 
 	//bi-directional many-to-one association to Servicio
 	@OneToMany(mappedBy="paseosecologico")
@@ -78,6 +84,49 @@ public class Paseosecologico implements Serializable {
 		servicio.setPaseosecologico(null);
 
 		return servicio;
+	}
+	
+	
+	
+
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getFotos() {
+		return this.fotos;
+	}
+
+	public void setFotos(String fotos) {
+		this.fotos = fotos;
+	}
+
+	public int getPrecio() {
+		return this.precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
+	public String getRequerimientos() {
+		return this.requerimientos;
+	}
+
+	public void setRequerimientos(String requerimientos) {
+		this.requerimientos = requerimientos;
+	}
+
+	public int getDuracion() {
+		return this.duracion;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
 	}
 
 }
