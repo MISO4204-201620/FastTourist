@@ -1,7 +1,6 @@
 package fabricas.presentacion.VOs;
 
 import java.io.Serializable;
-
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class UsuarioVO implements Serializable {
 	private String telefono;
 	
 	
-	private List<CalificacionesVO> Calificacioness;
+	private List<CalificacionesVO> Calificaciones;
 
 	private List<LogVO> logs;
 	
@@ -45,6 +44,10 @@ public class UsuarioVO implements Serializable {
 	private List<TransaccionesVO> transacciones;
 
 	private PerfilesVO perfil;
+	
+	private List<PreguntasVO> preguntas;
+	
+	private List<CarritoVO> carrito;
 
 	public UsuarioVO() {
 	}
@@ -129,12 +132,12 @@ public class UsuarioVO implements Serializable {
 		this.telefono = telefono;
 	}
 
-	public List<CalificacionesVO> getCalificacioness() {
-		return Calificacioness;
+	public List<CalificacionesVO> getCalificaciones() {
+		return Calificaciones;
 	}
 
-	public void setCalificacioness(List<CalificacionesVO> calificacioness) {
-		Calificacioness = calificacioness;
+	public void setCalificaciones(List<CalificacionesVO> calificaciones) {
+		Calificaciones = calificaciones;
 	}
 
 	public List<LogVO> getLogs() {
@@ -167,5 +170,33 @@ public class UsuarioVO implements Serializable {
 
 	public void setPerfil(PerfilesVO perfile) {
 		this.perfil = perfile;
+	}
+
+	/**
+	 * @return the preguntas
+	 */
+	public List<PreguntasVO> getPreguntas() {
+		return preguntas;
+	}
+
+	/**
+	 * @param preguntas the preguntas to set
+	 */
+	public void setPreguntas(List<PreguntasVO> preguntas) {
+		this.preguntas = preguntas;
+	}
+
+	/**
+	 * @return the carrito
+	 */
+	public List<CarritoVO> getCarrito() {
+		return carrito;
+	}
+
+	/**
+	 * @param carrito the carrito to set
+	 */
+	public void setCarrito(List<CarritoVO> carrito) {
+		this.carrito = carrito;
 	}
 }

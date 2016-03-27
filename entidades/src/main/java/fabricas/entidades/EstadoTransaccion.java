@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
@@ -15,7 +16,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="estado_transaccion")
-@NamedQuery(name="EstadoTransaccion.findAll", query="SELECT e FROM EstadoTransaccion e")
+@NamedQueries({
+	@NamedQuery(name="EstadoTransaccion.findAll", query="SELECT e FROM EstadoTransaccion e"),
+	@NamedQuery(name="EstadoTransaccion.findById", query="SELECT e FROM EstadoTransaccion e where e.idestadoTransaccion = :id")
+	})
+
 public class EstadoTransaccion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,9 +32,9 @@ public class EstadoTransaccion implements Serializable {
 
 	private String nombre;
 
-	//bi-directional many-to-one association to Transaccione
+	//bi-directional many-to-one association to Transacciones
 	@OneToMany(mappedBy="estadoTransaccion")
-	
+	@JsonBackReference
 	private List<Transacciones> transacciones;
 
 	public EstadoTransaccion() {
@@ -67,18 +72,18 @@ public class EstadoTransaccion implements Serializable {
 		this.transacciones = transacciones;
 	}
 
-	public Transacciones addTransaccione(Transacciones transaccione) {
-		getTransacciones().add(transaccione);
-		transaccione.setEstadoTransaccion(this);
+	public Transacciones addTransacciones(Transacciones transacciones) {
+		getTransacciones().add(transacciones);
+		transacciones.setEstadoTransaccion(this);
 
-		return transaccione;
+		return transacciones;
 	}
 
-	public Transacciones removeTransaccione(Transacciones transaccione) {
-		getTransacciones().remove(transaccione);
-		transaccione.setEstadoTransaccion(null);
+	public Transacciones removeTransacciones(Transacciones transacciones) {
+		getTransacciones().remove(transacciones);
+		transacciones.setEstadoTransaccion(null);
 
-		return transaccione;
+		return transacciones;
 	}
 
 }

@@ -1,7 +1,11 @@
 package fabricas.entidades;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.List;
 
 
@@ -21,9 +25,17 @@ public class Paseosecologico implements Serializable {
 	private String lugar;
 
 	private String nombre;
+	
+	private String descripcion;
+	private String fotos;
+	private int		precio;
+	private String requerimientos;
+	private int duracion;
+
 
 	//bi-directional many-to-one association to Servicio
 	@OneToMany(mappedBy="paseosecologico")
+	@JsonBackReference
 	private List<Servicio> servicios;
 
 	public Paseosecologico() {
@@ -74,5 +86,49 @@ public class Paseosecologico implements Serializable {
 
 		return servicio;
 	}
+	
+	
+	
+	
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getFotos() {
+		return this.fotos;
+	}
+
+	public void setFotos(String fotos) {
+		this.fotos = fotos;
+	}
+
+	public int getPrecio() {
+		return this.precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
+	public String getRequerimientos() {
+		return this.requerimientos;
+	}
+
+	public void setRequerimientos(String requerimientos) {
+		this.requerimientos = requerimientos;
+	}
+
+	public int getDuracion() {
+		return this.duracion;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
 
 }

@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.Date;
 import java.util.List;
 
@@ -40,10 +42,18 @@ public class Alojamiento implements Serializable {
 	private String nombre;
 
 	private String telefono;
+	
+	private Boolean piscina;
+	
+	private Boolean wifi;
+	
+	private Boolean aire_acondicionado;
 
 	//bi-directional many-to-one association to Servicio
 	@OneToMany(mappedBy="alojamiento")
+	@JsonBackReference
 	private List<Servicio> servicios;
+	
 
 	public Alojamiento() {
 	}
@@ -140,6 +150,30 @@ public class Alojamiento implements Serializable {
 		servicio.setAlojamiento(null);
 
 		return servicio;
+	}
+
+	public Boolean isPiscina() {
+		return piscina;
+	}
+
+	public void setPiscina(Boolean piscina) {
+		this.piscina = piscina;
+	}
+
+	public Boolean isWifi() {
+		return wifi;
+	}
+
+	public void setWifi(Boolean wifi) {
+		this.wifi = wifi;
+	}
+
+	public Boolean isAire_acondicionado() {
+		return aire_acondicionado;
+	}
+
+	public void setAire_acondicionado(Boolean aire_acondicionado) {
+		this.aire_acondicionado = aire_acondicionado;
 	}
 
 }

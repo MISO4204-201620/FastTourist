@@ -1,6 +1,9 @@
 package fabricas.presentacion.VOs;
 
 import java.io.Serializable;
+import java.util.Date;
+
+
 
 public class TransaccionesVO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -8,15 +11,17 @@ public class TransaccionesVO implements Serializable {
 	
 	private int idtransacciones;
 
-	private String descripcion;
-
 	
-	private UsuarioVO usuario;
+	private Date fecha;
+
 
 	private EstadoTransaccionVO estadoTransaccion;
 
 	
-	private PaqueteVO paqueteBean;
+	private ServicioVO servicio;
+
+	
+	private UsuarioVO usuario;
 
 	public TransaccionesVO() {
 	}
@@ -29,20 +34,12 @@ public class TransaccionesVO implements Serializable {
 		this.idtransacciones = idtransacciones;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public Date getFecha() {
+		return this.fecha;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public UsuarioVO getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(UsuarioVO usuario) {
-		this.usuario = usuario;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	public EstadoTransaccionVO getEstadoTransaccion() {
@@ -53,12 +50,20 @@ public class TransaccionesVO implements Serializable {
 		this.estadoTransaccion = estadoTransaccion;
 	}
 
-	public PaqueteVO getPaqueteBean() {
-		return this.paqueteBean;
+	public ServicioVO getServicio() {
+		return this.servicio;
 	}
 
-	public void setPaqueteBean(PaqueteVO paqueteBean) {
-		this.paqueteBean = paqueteBean;
+	public void setServicio(ServicioVO servicio) {
+		this.servicio = servicio;
+	}
+
+	public UsuarioVO getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(UsuarioVO usuario) {
+		this.usuario = usuario;
 	}
 
 }

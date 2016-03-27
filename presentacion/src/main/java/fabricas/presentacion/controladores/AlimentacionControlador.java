@@ -16,25 +16,38 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fabricas.presentacion.VOs.CalificacionesVO;
 import fabricas.presentacion.VOs.ServicioVO;
+import fabricas.presentacion.VOs.TipoalimentacionVO;
 import fabricas.presentacion.VOs.UsuarioVO;
 
 @Controller
+@RequestMapping(value = "/alimentacion")
 public class AlimentacionControlador {
 	private static final String VIEW_SERVICIOS_ALIMENTACION = "indexAlimentacion";
 	private static final String VIEW_ALIMENTACION = "verAlimentacion";
 	
-	@RequestMapping(value = "/alimentacion", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView buscarAlimentacion(ModelMap model) {
 		List<ServicioVO> servicios = null;
 		List<UsuarioVO> proveedores = null;
+		List<TipoalimentacionVO> tipo = null;
 		ObjectMapper mapper = new ObjectMapper();
 		RestTemplate restTemplate = new RestTemplate();
 		
-		String result = restTemplate.getForObject("http://localhost:8080/logica/alimentacion/getProveedores", 
+		String result = restTemplate.getForObject("http://localhost:8080/logica/alimentacion/getProveedores/", 
 				String.class);
 		
 		try{
 			proveedores = mapper.readValue(result, new TypeReference<List<UsuarioVO>>(){});			
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		
+		result = restTemplate.getForObject("http://localhost:8080/logica/alimentacion/getTipos/", 
+				String.class);
+		
+		try{
+			tipo = mapper.readValue(result, new TypeReference<List<TipoalimentacionVO>>(){});			
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
@@ -53,22 +66,23 @@ public class AlimentacionControlador {
 		ModelAndView mav = new ModelAndView(VIEW_SERVICIOS_ALIMENTACION);
 		mav.addObject("servicios", servicios);
 		mav.addObject("proveedores", proveedores);
+		mav.addObject("tipo", tipo);
 		
 		return mav;
 	}
 	
-	@RequestMapping(value = "/alimentacion", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ModelAndView buscarAlimentacion(
-			@RequestParam(value="ciudad", required=false) String ciudad,
-			@RequestParam(value="proveedor", required=false) String proveedor,			
+			@RequestParam(value="proveedor", required=false) String proveedor,
 			@RequestParam(value="tipoAlimentacion", required=false) String tipoAlimentacion){
 		
 		List<ServicioVO> servicios = null;
 		List<UsuarioVO> proveedores = null;
+		List<TipoalimentacionVO> tipo = null;
 		ObjectMapper mapper = new ObjectMapper();
 		RestTemplate restTemplate = new RestTemplate();
 		
-		String result = restTemplate.getForObject("http://localhost:8080/logica/alimentacion/getProveedores", 
+		String result = restTemplate.getForObject("http://localhost:8080/logica/alimentacion/getProveedores/", 
 				String.class);
 		
 		try{
@@ -78,7 +92,17 @@ public class AlimentacionControlador {
 			System.out.println(e.getMessage());
 		}
 		
-		String consulta = "ciudad="+ciudad+",proveedor="+proveedor+",tipoAlimentacion="+tipoAlimentacion;
+		result = restTemplate.getForObject("http://localhost:8080/logica/alimentacion/getTipos/", 
+				String.class);
+		
+		try{
+			tipo = mapper.readValue(result, new TypeReference<List<TipoalimentacionVO>>(){});			
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		
+		String consulta = "proveedor="+proveedor+",tipoAlimentacion="+tipoAlimentacion;
 				
 		result = restTemplate.getForObject("http://localhost:8080/logica/alimentacion/" + consulta, 
 				String.class);
@@ -93,6 +117,7 @@ public class AlimentacionControlador {
 		ModelAndView mav = new ModelAndView(VIEW_SERVICIOS_ALIMENTACION);
 		mav.addObject("servicios", servicios);
 		mav.addObject("proveedores", proveedores);
+		mav.addObject("tipo", tipo);
 		
 		return mav;
 	}
@@ -127,5 +152,40 @@ public class AlimentacionControlador {
 		return modelAndView;
 	}
 	
-	
+	@RequestMapping(value = "/getAlimentacion/{id}/", method = RequestMethod.POST)
+	public ModelAndView getAlimentacion(@PathVariable("id")int id,@RequestParam(value="inputPregunta", required=false) String pregunta){
+
+		ServicioVO servicio=null;
+		ObjectMapper mapper = new ObjectMapper();
+		RestTemplate restTemplate = new RestTemplate();
+
+		String result="";		
+		if (pregunta != null && !pregunta.isEmpty()) {
+			pregunta = pregunta.replace("?", "");
+			result = restTemplate.getForObject(
+					"http://localhost:8080/logica/preguntas/set/" + pregunta
+							+ "/" + id, String.class);
+		}
+		
+		result = restTemplate.getForObject("http://localhost:8080/logica/alimentacion/get/" + id, String.class);
+		try {
+			servicio = mapper.readValue(result, ServicioVO.class);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		int promCalificacion = 0;
+		
+		for(CalificacionesVO calificacion : servicio.getCalificaciones()){
+			promCalificacion = calificacion.getIdcalificaciones() + promCalificacion;
+		}
+		
+		promCalificacion = promCalificacion/servicio.getCalificaciones().size();
+		
+		ModelAndView modelAndView = new ModelAndView(VIEW_ALIMENTACION);
+		modelAndView.addObject("servicio", servicio);
+		modelAndView.addObject("promCalificacion", promCalificacion);
+        
+		return modelAndView;
+	}
 }

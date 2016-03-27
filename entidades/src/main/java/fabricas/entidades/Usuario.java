@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.Date;
@@ -16,7 +18,10 @@ import java.util.List;
  */
 @Entity
 @Table(name="usuarios")
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+@NamedQueries({
+	@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u"),
+	@NamedQuery(name="Usuario.findById", query="SELECT u FROM Usuario u where u.idusuario = :id")
+	})
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -45,9 +50,25 @@ public class Usuario implements Serializable {
 	
 	//bi-directional many-to-one association to Calificaciones
 	@OneToMany(mappedBy="usuario")
+	@JsonIgnore
+	private List<Calificaciones> Calificaciones;
 	
-	private List<Calificaciones> Calificacioness;
 
+	//bi-directional many-to-one association to Pregunta
+	@OneToMany(mappedBy="usuario")
+	@JsonBackReference
+	private List<Preguntas> preguntas;
+
+	//bi-directional many-to-one association to Carrito
+	@OneToMany(mappedBy="usuario")
+	@JsonBackReference
+	private List<Carrito> carrito;
+	
+	//bi-directional many-to-one association to Transacciones
+	@OneToMany(mappedBy="usuario")
+	@JsonBackReference
+	private List<Transacciones> transacciones;
+	
 	//bi-directional many-to-one association to Log
 	@OneToMany(mappedBy="usuarioBean")
 	
@@ -55,13 +76,8 @@ public class Usuario implements Serializable {
 
 	//bi-directional many-to-one association to Servicio
 	@OneToMany(mappedBy="usuario")
-	
+	@JsonBackReference
 	private List<Servicio> servicios;
-
-	//bi-directional many-to-one association to Transaccione
-	@OneToMany(mappedBy="usuario")
-	
-	private List<Transacciones> transacciones;
 
 	//bi-directional many-to-one association to Perfile
 	@ManyToOne
@@ -151,27 +167,22 @@ public class Usuario implements Serializable {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-
-	public List<Calificaciones> getCalificacioness() {
-		return this.Calificacioness;
+	@JsonIgnore
+	public List<Calificaciones> getCalificaciones() {
+		return this.Calificaciones;
+	}
+	@JsonIgnore
+	public void setCalificaciones(List<Calificaciones> Calificaciones) {
+		this.Calificaciones = Calificaciones;
 	}
 
-	public void setCalificacioness(List<Calificaciones> Calificacioness) {
-		this.Calificacioness = Calificacioness;
+
+	public List<Carrito> getCarrito() {
+		return carrito;
 	}
 
-	public Calificaciones addCalificaciones(Calificaciones Calificaciones) {
-		getCalificacioness().add(Calificaciones);
-		Calificaciones.setUsuario(this);
-
-		return Calificaciones;
-	}
-
-	public Calificaciones removeCalificaciones(Calificaciones Calificaciones) {
-		getCalificacioness().remove(Calificaciones);
-		Calificaciones.setUsuario(null);
-
-		return Calificaciones;
+	public void setCarrito(List<Carrito> carrito) {
+		this.carrito = carrito;
 	}
 
 	public List<Log> getLogs() {
@@ -196,27 +207,14 @@ public class Usuario implements Serializable {
 		return log;
 	}
 
-	/*public List<Servicio> getServicios() {
+	public List<Servicio> getServicios() {
 		return this.servicios;
 	}
 
 	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
-	}*/
-
-	/*public Servicio addServicio(Servicio servicio) {
-		getServicios().add(servicio);
-		servicio.setUsuario(this);
-
-		return servicio;
 	}
 
-	public Servicio removeServicio(Servicio servicio) {
-		getServicios().remove(servicio);
-		servicio.setUsuario(null);
-
-		return servicio;
-	}*/
 
 	public List<Transacciones> getTransacciones() {
 		return this.transacciones;
@@ -226,19 +224,16 @@ public class Usuario implements Serializable {
 		this.transacciones = transacciones;
 	}
 
-	public Transacciones addTransaccione(Transacciones transaccione) {
-		getTransacciones().add(transaccione);
-		transaccione.setUsuario(this);
+	
 
-		return transaccione;
+	public List<Preguntas> getPreguntas() {
+		return this.preguntas;
 	}
 
-	public Transacciones removeTransaccione(Transacciones transaccione) {
-		getTransacciones().remove(transaccione);
-		transaccione.setUsuario(null);
-
-		return transaccione;
+	public void setPreguntas(List<Preguntas> preguntas) {
+		this.preguntas = preguntas;
 	}
+
 
 	public Perfiles getPerfil() {
 		return this.perfil;

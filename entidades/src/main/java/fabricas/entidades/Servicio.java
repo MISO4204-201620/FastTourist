@@ -2,6 +2,10 @@ package fabricas.entidades;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -16,8 +20,8 @@ import java.util.List;
 @NamedQueries({
 	@NamedQuery(name="Servicio.findAll", query="SELECT s FROM Servicio s"),
 	@NamedQuery(name="Servicio.findById", query="SELECT s FROM Servicio s where s.activo = :id"),
-	@NamedQuery(name="Servicio.findByAlimentacion", query="SELECT s FROM Servicio s where s.activo=1 and s.categoria=2"),
-	@NamedQuery(name="Servicio.findByProveedoresByAlimentacion", query="SELECT DISTINCT(s.usuario) FROM Servicio s where s.alimentacion = alimentacion"),
+	@NamedQuery(name="Servicio.findAlimentacion", query="SELECT s FROM Servicio s where s.activo=1 and s.categoria=2"),
+	@NamedQuery(name="Servicio.findProveedoresByAlimentacion", query="SELECT DISTINCT(s.usuario) FROM Servicio s WHERE UPPER(s.categoria.nombre) LIKE UPPER('%alimentacion%')")
 }) 
 
 public class Servicio implements Serializable {
@@ -26,7 +30,7 @@ public class Servicio implements Serializable {
 	@Id
 	private int idservicios;
 
-	private boolean activo;
+	private Boolean activo;
 
 	private String descripcion;
 
@@ -45,7 +49,19 @@ public class Servicio implements Serializable {
 
 	//bi-directional many-to-one association to Calificacione
 	@OneToMany(mappedBy="servicio")
+	@JsonManagedReference
 	private List<Calificaciones> calificaciones;
+
+
+	//bi-directional many-to-one association to Pregunta
+	@OneToMany(mappedBy="servicio")
+	@JsonManagedReference
+	private List<Preguntas> preguntas;
+	
+	//bi-directional many-to-one association to Carrito
+	@OneToMany(mappedBy="servicio")
+	@JsonBackReference
+	private List<Carrito> carrito;
 
 	//bi-directional many-to-one association to Categoria
 	@ManyToOne
@@ -55,41 +71,51 @@ public class Servicio implements Serializable {
 	//bi-directional many-to-many association to Paquete
 	@ManyToMany
 	@JoinTable(
-		name="servicios_por_paquete"
-		, joinColumns={
-			@JoinColumn(name="servicio")
+			name="servicios_por_paquete"
+			, joinColumns={
+					@JoinColumn(name="servicio")
 			}
-		, inverseJoinColumns={
-			@JoinColumn(name="paquete")
+			, inverseJoinColumns={
+					@JoinColumn(name="paquete")
 			}
-		)
+			)
 	private List<Paquete> paquetes;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="proveedor")
+	@JsonManagedReference
 	private Usuario usuario;
 
 	//bi-directional many-to-one association to Alimentacion
 	@ManyToOne
 	@JoinColumn(name="alimentacion")
+	@JsonManagedReference
 	private Alimentacion alimentacion;
 
 	//bi-directional many-to-one association to Alojamiento
 	@ManyToOne
 	@JoinColumn(name="alojamiento")
+	@JsonManagedReference
 	private Alojamiento alojamiento;
 
 	//bi-directional many-to-one association to Paseosecologico
 	@ManyToOne
 	@JoinColumn(name="paseo_eco")
+	@JsonManagedReference
 	private Paseosecologico paseosecologico;
 
 	//bi-directional many-to-one association to Transporte
 	@ManyToOne
 	@JoinColumn(name="transporte")
+	@JsonManagedReference
 	private Transporte transporte;
 
+	//bi-directional many-to-one association to Transacciones
+	@OneToMany(mappedBy="servicio")
+	@JsonBackReference
+	private List<Transacciones> transacciones;
+	
 	public Servicio() {
 	}
 
@@ -101,11 +127,11 @@ public class Servicio implements Serializable {
 		this.idservicios = idservicios;
 	}
 
-	public boolean  getActivo() {
+	public Boolean getActivo() {
 		return this.activo;
 	}
 
-	public void setActivo(boolean  activo) {
+	public void setActivo(Boolean  activo) {
 		this.activo = activo;
 	}
 
@@ -179,6 +205,36 @@ public class Servicio implements Serializable {
 		return calificaciones;
 	}
 
+
+	public List<Preguntas> getPreguntas() {
+		return this.preguntas;
+	}
+
+	public List<Carrito> getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(List<Carrito> carrito) {
+		this.carrito = carrito;
+	}
+
+	public void setPreguntas(List<Preguntas> preguntas) {
+		this.preguntas = preguntas;
+	}
+
+	public Preguntas addPreguntas(Preguntas preguntas) {
+		getPreguntas().add(preguntas);
+		preguntas.setServicio(this);
+
+		return preguntas;
+	}
+
+	public Preguntas removePreguntas(Preguntas preguntas) {
+		getPreguntas().remove(preguntas);
+		preguntas.setServicio(null);
+
+		return preguntas;
+	}
 	public Categoria getCategoria() {
 		return this.categoria;
 	}
@@ -233,6 +289,14 @@ public class Servicio implements Serializable {
 
 	public void setTransporte(Transporte transporte) {
 		this.transporte = transporte;
+	}
+
+	public List<Transacciones> getTransacciones() {
+		return transacciones;
+	}
+
+	public void setTransacciones(List<Transacciones> transacciones) {
+		this.transacciones = transacciones;
 	}
 
 }

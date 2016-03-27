@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fabricas.entidades.Servicio;
+import fabricas.entidades.Tipoalimentacion;
 import fabricas.entidades.Usuario;
 
 
@@ -22,7 +23,7 @@ import fabricas.entidades.Usuario;
 public class RestAlimentacion {
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value="/getProveedores", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/getProveedores", method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
 	public ResponseEntity<List<Usuario>> getProveedores(){
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
@@ -33,7 +34,19 @@ public class RestAlimentacion {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value="/", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/getipos", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
+	public ResponseEntity <List<Tipoalimentacion>> getTiposAlimentacion() {
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+
+		List<Tipoalimentacion> tipos = (List<Tipoalimentacion>) em.createNamedQuery("Tipoalimentacion.findAll").getResultList();
+
+		return new ResponseEntity <List<Tipoalimentacion>> (tipos, HttpStatus.OK);
+
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/", method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
 	public ResponseEntity<List<Servicio>> getAlimentacion(){
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
@@ -44,8 +57,9 @@ public class RestAlimentacion {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value="/{filtros}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/{filtros}", method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
 	public ResponseEntity<List<Servicio>> getAlimentacionByFilters(@PathVariable String filtros){
+		
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 		
@@ -56,45 +70,37 @@ public class RestAlimentacion {
 		return new ResponseEntity<List<Servicio>>(servicios, HttpStatus.OK);
 	}	
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
 	public ResponseEntity<Servicio> getAlimentacionById(@PathVariable int id) {
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 		
-		Servicio result = (Servicio) em.createNamedQuery("Servicio.findById")
+		Servicio alimentacion = (Servicio) em.createNamedQuery("Servicio.findById")
 				.setParameter("id", id)
 				.getSingleResult();
 						
-		return new ResponseEntity<Servicio>(result, HttpStatus.OK);
+		return new ResponseEntity<Servicio>(alimentacion, HttpStatus.OK);
 	}
 
 	private String queryAlimentacionByFilters(String filtros) {
 		//Se recuperan los filtros de busqueda
-		String ciudad="";
 		String proveedor="";
 		String tipoAlimentacion="";		
 
 		for (String filtro : filtros.split(",")) {
 			String[]values = filtro.split("=");
 			if(values.length==2){
-				if (values[0].equals("ciudad")){
-					ciudad=values[1];
-				}else if(values[0].equals("proveedor")){
-					proveedor=values[1];
+				if(values[0].equals("proveedor")){
+					proveedor=values[1];				
 				}else if(values[0].equals("tipoAlimentacion")){
 					tipoAlimentacion=values[1];
 				}
 			}
 		}
 		
-		String query = "SELECT s FROM Servicio s WHERE s.activo=1 AND s.categoria=1 ";
-
-		if (!ciudad.isEmpty()){
-			query = query + "AND (UPPER(s.alimentacion.ciudad) like UPPER('%" + ciudad +"%') ";
-			query = query + "OR UPPER(s.alimentacion.nombre) like UPPER('%" + ciudad +"%') ";
-			query = query + "OR UPPER(s.nombre) like UPPER('%" + ciudad +"%')) ";
-		}
+		String query = "SELECT s FROM Servicio s WHERE s.activo=1 AND s.categoria=2 ";
+		
 		if(!proveedor.isEmpty()){
 			query = query + "AND s.usuario="+proveedor+" ";
 		}

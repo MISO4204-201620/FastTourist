@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * The persistent class for the servicios database table.
  * 
@@ -13,7 +14,7 @@ import java.util.List;
 public class ServicioVO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idservicios;
-	private boolean activo;
+	private Boolean activo;
 	private String descripcion;
 	private BigDecimal descuento;
 	private Date fechaCreacion;
@@ -28,6 +29,9 @@ public class ServicioVO implements Serializable {
 	private AlojamientoVO alojamiento;
 	private PaseosecologicoVO paseosecologico;
 	private TransporteVO transporte;
+	private List<PreguntasVO> preguntas;
+	private List<CarritoVO> carrito;
+	private List<TransaccionesVO> transacciones;
 
 	public ServicioVO() {
 	}
@@ -46,11 +50,11 @@ public class ServicioVO implements Serializable {
 		this.idservicios = idservicios;
 	}
 
-	public boolean isActivo() {
+	public Boolean isActivo() {
 		return activo;
 	}
 
-	public void setActivo(boolean activo) {
+	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
 
@@ -170,5 +174,39 @@ public class ServicioVO implements Serializable {
 		this.categoria = categoria;
 	}
 
-	
+	/**
+	 * @return the preguntas
+	 */
+	public List<PreguntasVO> getPreguntas() {
+		return preguntas;
+	}
+
+	/**
+	 * @param preguntas the preguntas to set
+	 */
+	public void setPreguntas(List<PreguntasVO> preguntas) {
+		this.preguntas = preguntas;
+	}
+
+	/**
+	 * @return the carrito
+	 */
+	public List<CarritoVO> getCarrito() {
+		return carrito;
+	}
+
+	/**
+	 * @param carrito the carrito to set
+	 */
+	public void setCarrito(List<CarritoVO> carrito) {
+		this.carrito = carrito;
+	}
+
+	public List<TransaccionesVO> getTransacciones() {
+		return transacciones;
+	}
+
+	public void setTransacciones(List<TransaccionesVO> transacciones) {
+		this.transacciones = transacciones;
+	}	
 }

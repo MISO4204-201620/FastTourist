@@ -34,11 +34,7 @@ public class Paquete implements Serializable {
 	//bi-directional many-to-many association to Servicio
 	@ManyToMany(mappedBy="paquetes")
 	private List<Servicio> servicios;
-
-	//bi-directional many-to-one association to Transaccione
-	@OneToMany(mappedBy="paquete")
-	private List<Transacciones> transacciones;
-
+	
 	public Paquete() {
 	}
 
@@ -89,27 +85,4 @@ public class Paquete implements Serializable {
 	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
 	}
-
-	public List<Transacciones> getTransacciones() {
-		return this.transacciones;
-	}
-
-	public void setTransacciones(List<Transacciones> transacciones) {
-		this.transacciones = transacciones;
-	}
-
-	public Transacciones addTransaccione(Transacciones transacciones) {
-		getTransacciones().add(transacciones);
-		transacciones.setPaquete(this);
-
-		return transacciones;
-	}
-
-	public Transacciones removeTransaccione(Transacciones transacciones) {
-		getTransacciones().remove(transacciones);
-		transacciones.setPaquete(null);
-
-		return transacciones;
-	}
-
 }

@@ -4,39 +4,46 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.Date;
+
 
 /**
  * The persistent class for the transacciones database table.
  * 
  */
 @Entity
-@Table(name="transacciones")
-@NamedQuery(name="Transacciones.findAll", query="SELECT t FROM Transacciones t")
+@NamedQueries({
+@NamedQuery(name="Transacciones.findAll", query="SELECT t FROM Transacciones t"),
+@NamedQuery(name="Transacciones.getMaxId", query="SELECT MAX(t.idtransacciones) FROM Transacciones t")
+})
 public class Transacciones implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private int idtransacciones;
 
-	private String descripcion;
-
-	//bi-directional many-to-one association to Usuario
-	@ManyToOne
-	@JoinColumn(name="cliente")
-	
-	private Usuario usuario;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fecha;
 
 	//bi-directional many-to-one association to EstadoTransaccion
 	@ManyToOne
-	@JoinColumn(name="estado")
-	
+	@JoinColumn(name="estadoTransaccion")
+	@JsonManagedReference
 	private EstadoTransaccion estadoTransaccion;
 
-	//bi-directional many-to-one association to Paquete
+	//bi-directional many-to-one association to Servicio
 	@ManyToOne
-	@JoinColumn(name="paquete")
-	
-	private Paquete paquete;
+	@JoinColumn(name="servicio")
+	@JsonManagedReference
+	private Servicio servicio;
+
+	//bi-directional many-to-one association to Usuario
+	@ManyToOne
+	@JoinColumn(name="usuario")
+	@JsonManagedReference
+	private Usuario usuario;
 
 	public Transacciones() {
 	}
@@ -49,20 +56,12 @@ public class Transacciones implements Serializable {
 		this.idtransacciones = idtransacciones;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public Date getFecha() {
+		return this.fecha;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public Usuario getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	public EstadoTransaccion getEstadoTransaccion() {
@@ -73,12 +72,20 @@ public class Transacciones implements Serializable {
 		this.estadoTransaccion = estadoTransaccion;
 	}
 
-	public Paquete getPaquete() {
-		return this.paquete;
+	public Servicio getServicio() {
+		return this.servicio;
 	}
 
-	public void setPaquete(Paquete paquete) {
-		this.paquete = paquete;
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

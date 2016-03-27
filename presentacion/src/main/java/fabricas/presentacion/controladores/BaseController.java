@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BaseController {
 
 	private static final String VIEW_INDEX = "indexAlojamiento";
+	//private static final String ALIMENTACION = "indexAlimentacion";
 	private static final String CONTACTENOS = "contactenos";
 	private static final String REGISTRO = "registro";
 	private static final String CARRITO = "carrito";	
@@ -20,6 +21,17 @@ public class BaseController {
 		return VIEW_INDEX;
 
 	}
+	
+	/**
+	 * Controlador de la pantalla Alimentacion
+	 * @param model
+	 * @return
+	 
+	@RequestMapping(value = "/alimentacion", method = RequestMethod.GET)
+	public String alimentacion(ModelMap model) {
+		return ALIMENTACION;
+	}*/
+	
 	/**
 	 * Controlador de la pantalla Contactenos
 	 * @param model

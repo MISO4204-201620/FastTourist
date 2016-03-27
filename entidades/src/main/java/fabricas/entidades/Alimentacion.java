@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 
@@ -13,12 +16,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="alimentacion")
-@NamedQueries({
-	@NamedQuery(name="Alimentacion.findAll", query="SELECT a FROM Alimentacion a"),
-	@NamedQuery(name="Alimentacion.findById", query="SELECT a FROM Alimentacion a where a.idalimentacion = :id"),
-	
-})
-
+@NamedQuery(name="Alimentacion.findAll", query="SELECT a FROM Alimentacion a")
 public class Alimentacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -30,10 +28,12 @@ public class Alimentacion implements Serializable {
 	//bi-directional many-to-one association to Tipoalimentacion
 	@ManyToOne
 	@JoinColumn(name="tipo")
+	@JsonManagedReference
 	private Tipoalimentacion tipoalimentacion;
 
 	//bi-directional many-to-one association to Servicio
 	@OneToMany(mappedBy="alimentacion")
+	@JsonBackReference
 	private List<Servicio> servicios;
 
 	public Alimentacion() {

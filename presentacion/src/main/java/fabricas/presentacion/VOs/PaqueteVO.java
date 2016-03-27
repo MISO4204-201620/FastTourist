@@ -32,8 +32,6 @@ public class PaqueteVO implements Serializable {
 	private List<ServicioVO> servicios;
 
 	
-	private List<TransaccionesVO> transacciones;
-
 	public PaqueteVO() {
 	}
 
@@ -83,15 +81,5 @@ public class PaqueteVO implements Serializable {
 
 	public void setServicios(List<ServicioVO> servicios) {
 		this.servicios = servicios;
-	}
-
-	public List<TransaccionesVO> getTransacciones() {
-		return transacciones;
-	}
-
-	public void setTransacciones(List<TransaccionesVO> transacciones) {
-		this.transacciones = transacciones;
-	}
-
-	
+	}	
 }
