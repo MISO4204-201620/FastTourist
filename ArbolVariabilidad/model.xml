@@ -35,8 +35,7 @@
 						<feature mandatory="true" name="PublicarFacebook"/>
 						<feature mandatory="true" name="PublicarTwitter"/>
 					</or>
-					<feature name="CalificarServivio"/>
-					<feature name="ComentarServicio"/>
+					<feature name="CalificarComentarServivio"/>
 					<feature mandatory="true" name="ConsultarTransaccionesyVentas"/>
 				</and>
 				<and mandatory="true" name="ModuloComunicacion">
@@ -55,24 +54,11 @@
 						<feature name="AutenticacionTwitter"/>
 					</and>
 				</and>
-				<or name="ModuloReportes">
-					<feature mandatory="true" name="ReporteBusquedas"/>
-					<feature mandatory="true" name="ReporteVentas"/>
-					<feature mandatory="true" name="ReporteConsultas"/>
-				</or>
-				<or name="ModuloBusquedaPersonalizada">
-					<feature mandatory="true" name="CargarBusquedasRecientes"/>
-					<feature mandatory="true" name="AlmacenarBusquedasRecientes"/>
-				</or>
+				<feature name="ModuloReportes"/>
+				<feature name="ModuloBusquedaPersonalizada"/>
 			</and>
 		</struct>
 		<constraints>
-			<rule>
-				<imp>
-					<var>CalificarServivio</var>
-					<var>ComentarServicio</var>
-				</imp>
-			</rule>
 			<rule>
 				<imp>
 					<var>AutenticacionFacebook</var>
@@ -95,27 +81,6 @@
 				<imp>
 					<var>PublicarTwitter</var>
 					<var>AutenticacionTwitter</var>
-				</imp>
-			</rule>
-			<rule>
-				<imp>
-					<var>ModuloBusquedaPersonalizada</var>
-					<conj>
-						<var>CargarBusquedasRecientes</var>
-						<var>AlmacenarBusquedasRecientes</var>
-					</conj>
-				</imp>
-			</rule>
-			<rule>
-				<imp>
-					<var>ModuloReportes</var>
-					<conj>
-						<var>ReporteBusquedas</var>
-						<conj>
-							<var>ReporteConsultas</var>
-							<var>ReporteVentas</var>
-						</conj>
-					</conj>
 				</imp>
 			</rule>
 		</constraints>

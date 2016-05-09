@@ -18,14 +18,14 @@
   </module>
   <module>
     <web>
-      <web-uri>mensajeria-0.0.1-SNAPSHOT.war</web-uri>
-      <context-root>/mensajeria</context-root>
+      <web-uri>busqueda-0.0.1-SNAPSHOT.war</web-uri>
+      <context-root>/busqueda</context-root>
     </web>
   </module>
   <module>
     <web>
-      <web-uri>busqueda-0.0.1-SNAPSHOT.war</web-uri>
-      <context-root>/busqueda</context-root>
+      <web-uri>mensajeria-0.0.1-SNAPSHOT.war</web-uri>
+      <context-root>/mensajeria</context-root>
     </web>
   </module>
 </application>

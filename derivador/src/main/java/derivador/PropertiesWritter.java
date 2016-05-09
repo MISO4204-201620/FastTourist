@@ -11,8 +11,8 @@ public class PropertiesWritter {
 		
 		try{
 			//Se guarda el archivo de propiedades en la capa de presentacion del market place
-			File file = new File(Constantes.RUTA_REPO_LOCAL 
-					+ Constantes.PROYECTO_PRESENTACION +"/properties/default.properties");
+			File file = new File(Constantes.RUTA_REPO_LOCAL +
+					Constantes.PROYECTO_PRESENTACION + "/properties/default.properties");
 			FileOutputStream fileOut;
 			fileOut = new FileOutputStream(file);
 			properties.store(fileOut, "Se genera el properties apartir del archivo config de productos");
@@ -25,7 +25,8 @@ public class PropertiesWritter {
 
 			fileOut.close();
 		} catch (Exception e) {
-			System.out.println("Error:" + e.getMessage());
+			System.out.println("Error: No se encontró la ruta\n");
+			System.out.println("Se dede modificar en la clase constantes, la ruta de su repositorio local de Git");
 		}
 	}
 }

@@ -8,10 +8,10 @@
         <dependent-module archiveName="logica-0.0.1-SNAPSHOT.war" deploy-path="/" handle="module:/resource/logica/logica">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="mensajeria-0.0.1-SNAPSHOT.war" deploy-path="/" handle="module:/resource/mensajeria/mensajeria">
+        <dependent-module archiveName="busqueda-0.0.1-SNAPSHOT.war" deploy-path="/" handle="module:/resource/busqueda/busqueda">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="busqueda-0.0.1-SNAPSHOT.war" deploy-path="/" handle="module:/resource/busqueda/busqueda">
+        <dependent-module archiveName="mensajeria-0.0.1-SNAPSHOT.war" deploy-path="/" handle="module:/resource/mensajeria/mensajeria">
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>
