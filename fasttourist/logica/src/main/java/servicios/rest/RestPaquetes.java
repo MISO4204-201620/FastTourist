@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import utilidades.EnumCategorias;
-import VOs.PaqueteVO;
-import VOs.ServicioVO;
 import fabricas.entidades.Alimentacion;
 import fabricas.entidades.Alojamiento;
 import fabricas.entidades.Categoria;
@@ -26,6 +24,8 @@ import fabricas.entidades.Paseosecologico;
 import fabricas.entidades.Servicio;
 import fabricas.entidades.Transporte;
 import fabricas.entidades.Usuario;
+import fabricas.entidades.VOs.PaqueteVO;
+import fabricas.entidades.VOs.ServicioVO;
 
 
 @RestController
@@ -63,7 +63,7 @@ public class RestPaquetes {
 
 	}
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/{filtros}", 
 	method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
 	public ResponseEntity <List<Paquete>> getPaquetesByFilter(@PathVariable String filtros) {
@@ -77,7 +77,7 @@ public class RestPaquetes {
 
 		return new ResponseEntity <List<Paquete>> (paquetes, HttpStatus.OK);
 
-	}
+	}*/
 
 	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
 	public ResponseEntity<Paquete> getPaquete(@PathVariable int id) {

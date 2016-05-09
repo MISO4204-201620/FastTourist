@@ -24,12 +24,6 @@ public class MensajeriaControlador {
 
 	private static final String VIEW_MENSAJERIA = "mensajeria";
 
-	/*
-	 * private static final String VIEW_PROVEEDOR_EDITAR_SERVICIO =
-	 * "editarServicio"; private static final String
-	 * VIEW_PROVEEDOR_CREAR_SERVICIOS = "crearServicios"; private static final
-	 * String CATEGORIAS = "categorias";
-	 */
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView mensajesRecibidos(ModelMap model) {
@@ -48,7 +42,7 @@ public class MensajeriaControlador {
 		// Se obtienen los servicos del proveedor ordenados por fecha de
 		// creacion
 		String result = restTemplate.getForObject(
-				"http://localhost:8080/logica/mensajes/"
+				"http://localhost:8080/mensajeria/"
 						+ utilidades.getSessionIdUser() + "/destinatario",
 						String.class);
 		try {
@@ -98,7 +92,7 @@ public class MensajeriaControlador {
 		// Se obtienen los servicos del proveedor ordenados por fecha de
 		// creacion
 		String result = restTemplate.getForObject(
-				"http://localhost:8080/logica/mensajes/"
+				"http://localhost:8080/mensajeria/"
 						+ utilidades.getSessionIdUser() + "/remitente",
 						String.class);
 		try {
@@ -149,7 +143,7 @@ public class MensajeriaControlador {
 
 		// Se obtienen los servicos del proveedor ordenados por fecha de
 		// creacion
-		String uri = "http://localhost:8080/logica/mensajes/";
+		String uri = "http://localhost:8080/mensajeria/";
 		String result = (String) restTemplate.postForObject(uri,mensaje,String.class);
 		try {
 			mensaje = mapper.readValue(result,

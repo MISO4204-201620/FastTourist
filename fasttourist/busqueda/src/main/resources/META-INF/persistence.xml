@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="marketplace">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<non-jta-data-source>java:/MySqlDS</non-jta-data-source>
+		<class>fabricas.entidades.Calificaciones</class>
+		<class>fabricas.entidades.Categoria</class>
+		<class>fabricas.entidades.EstadoTransaccion</class>
+		<class>fabricas.entidades.Log</class>
+		<class>fabricas.entidades.Paquete</class>
+		<class>fabricas.entidades.Perfiles</class>
+		<class>fabricas.entidades.Servicio</class>
+		<class>fabricas.entidades.Transacciones</class>
+		<class>fabricas.entidades.Usuario</class>
+		<class>fabricas.entidades.Alimentacion</class>
+		<class>fabricas.entidades.Alojamiento</class>
+		<class>fabricas.entidades.Paseosecologico</class>
+		<class>fabricas.entidades.Tipoalimentacion</class>
+		<class>fabricas.entidades.Tipotransporte</class>
+		<class>fabricas.entidades.Transporte</class>
+		<class>fabricas.entidades.Preguntas</class>
+		<class>fabricas.entidades.Carrito</class>
+		<class>fabricas.entidades.Mensajeria</class>
+		
+		<properties>
+            <property name="hibernate.connection.autocommit" value="true" />
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<property name="hibernate.c3p0.min_size" value="5" />
+			<property name="hibernate.c3p0.max_size" value="20" />
+			<property name="hibernate.c3p0.timeout" value="500" />
+			<property name="hibernate.c3p0.max_statements" value="50" />
+			<property name="hibernate.c3p0.idle_test_period" value="2000" />
+        </properties>
+        
+	</persistence-unit>
+</persistence>

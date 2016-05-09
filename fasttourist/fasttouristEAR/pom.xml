@@ -45,11 +45,13 @@
     	<groupId>fastfactory</groupId>
     	<artifactId>mensajeria</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
+    	<type>war</type>
     </dependency>
     <dependency>
     	<groupId>fastfactory</groupId>
     	<artifactId>busqueda</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
+    	<type>war</type>
     </dependency>
   </dependencies>
 </project>

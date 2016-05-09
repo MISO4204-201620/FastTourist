@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import VOs.UsuarioVO;
-import fabricas.entidades.Perfiles;
-import fabricas.entidades.Usuario;
+import fabricas.entidades.*;
+import fabricas.entidades.VOs.UsuarioVO;
 
 @RestController
 @RequestMapping("/registro")

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import utilidades.EnumCategorias;
-import VOs.ServicioVO;
 import fabricas.entidades.Alimentacion;
 import fabricas.entidades.Alojamiento;
 import fabricas.entidades.Categoria;
@@ -26,6 +25,7 @@ import fabricas.entidades.Tipoalimentacion;
 import fabricas.entidades.Tipotransporte;
 import fabricas.entidades.Transporte;
 import fabricas.entidades.Usuario;
+import fabricas.entidades.VOs.ServicioVO;
 
 
 @RestController

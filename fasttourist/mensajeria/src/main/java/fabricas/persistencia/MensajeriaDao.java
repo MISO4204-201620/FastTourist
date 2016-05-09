@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import fabricas.entidades.Mensajeria;
 
+
 public class MensajeriaDao {
 
 	public Mensajeria crearMensaje(Mensajeria mensaje) {
