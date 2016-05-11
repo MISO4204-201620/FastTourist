@@ -27,7 +27,6 @@ public class BaseController {
 
 	private static final String CONTACTENOS = "contactenos";
 	private static final String REGISTRO = "registro";
-
 	
 	/**
 	 * Controlador de la pantalla Contactenos
