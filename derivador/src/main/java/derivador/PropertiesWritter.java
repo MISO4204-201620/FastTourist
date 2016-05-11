@@ -12,14 +12,14 @@ public class PropertiesWritter {
 		try{
 			//Se guarda el archivo de propiedades en la capa de presentacion del market place
 			File file = new File(Constantes.RUTA_REPO_LOCAL +
-					Constantes.PROYECTO_PRESENTACION + "/properties/default.properties");
+					Constantes.PROYECTO_PRESENTACION + "/src/main/resources/default.properties");
 			FileOutputStream fileOut;
 			fileOut = new FileOutputStream(file);
 			properties.store(fileOut, "Se genera el properties apartir del archivo config de productos");
 
 			//Se guarda el archivo de propiedades en la capa de servicios del market place
 			file = new File(Constantes.RUTA_REPO_LOCAL + 
-					Constantes.PROYECTO_LOGICA +"/properties/default.properties");
+					Constantes.PROYECTO_LOGICA +"/src/main/resources/default.properties");
 			fileOut = new FileOutputStream(file);
 			properties.store(fileOut, "Se genera el properties apartir del archivo config de productos");
 

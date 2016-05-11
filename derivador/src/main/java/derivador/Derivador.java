@@ -18,11 +18,11 @@ public class Derivador {
 		System.out.println("***Iniciando la generacion del producto FastTourist***");
 		System.out.println("******************************************************\n");
 		
-		ConfigLoader propertiesWriter = new ConfigLoader();
+		ConfigLoader configuracion = new ConfigLoader();
 		
 		try {
 			System.out.println("Paso1. Se obtienen los features de la configuracion\n");
-			features = propertiesWriter.cargarConfiguracion();
+			features = configuracion.cargarConfiguracion();
 			System.out.println("Paso2. Se genera el producto");
 			productGenerator();
 			System.out.println("Paso3. Se escribe el archivo de propiedades\n");
