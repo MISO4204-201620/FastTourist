@@ -28,7 +28,7 @@ public class RestTransaccion {
 		List<Transacciones> tr = (List<Transacciones>) em.createNamedQuery("Transacciones.findByUserId")
 				.setParameter("id", id)
 				.getResultList();
-
+		em.close();
 		return new ResponseEntity<List<Transacciones>>(tr, HttpStatus.OK);
 	} 
 

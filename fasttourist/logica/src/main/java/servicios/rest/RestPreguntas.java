@@ -39,7 +39,7 @@ public class RestPreguntas {
 		
 		em.persist(p);
 		em.getTransaction().commit();
-		
+		em.close();
 		return "ok";
 	}
 	
@@ -53,7 +53,7 @@ public class RestPreguntas {
 		List<Preguntas> preguntas = (List<Preguntas>) em.createNamedQuery("Preguntas.findByUserId")
 				.setParameter("id", id)
 				.getResultList();
-
+		em.close();
 		return new ResponseEntity<List<Preguntas>>(preguntas, HttpStatus.OK);
 	}
 	
@@ -74,7 +74,7 @@ public class RestPreguntas {
 		
 		em.persist(pregunta);
 		em.getTransaction().commit();
-		
+		em.close();
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 }

@@ -17,6 +17,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import utilidades.Constantes;
 import utilidades.utilidades;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -72,6 +73,7 @@ public class AlojamientoControlador {
 		modelAndView.addObject("proveedores", proveedores);
 		//Pasar a pantalla el usuario autenticado		
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 
@@ -129,6 +131,7 @@ public class AlojamientoControlador {
 		modelAndView.addObject("servicios", servicios);
 		modelAndView.addObject("proveedores", proveedores);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 
@@ -178,6 +181,7 @@ public class AlojamientoControlador {
 		//Se verrifica si se debe habilitar el boton para calificar
 		modelAndView.addObject("permisos", utilidades.getPermisos(id));
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 
 	}

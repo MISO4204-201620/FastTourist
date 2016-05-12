@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import utilidades.Constantes;
 import utilidades.EnumPerfiles;
 import utilidades.utilidades;
 
@@ -59,6 +60,8 @@ public class AdminController {
 		ModelAndView modelAndView = new ModelAndView(ADMIN);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("proveedores", usuarios);
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		
 		return modelAndView;
 	}
 	
@@ -94,6 +97,7 @@ public class AdminController {
 		}
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("proveedor", proveedor);
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 	
@@ -134,6 +138,7 @@ public class AdminController {
 		ModelAndView modelAndView = new ModelAndView(NUEVOPROV);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("proveedor",user);
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return(modelAndView);
 	}
 	
@@ -152,6 +157,7 @@ public class AdminController {
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("proveedor",user);
 		modelAndView.addObject("mensaje",resultado);		
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;	
 		}
 	
@@ -175,6 +181,7 @@ public class AdminController {
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("mensaje","Solicitudes de baja");
 		modelAndView.addObject("proveedores",proveedores);
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;	
 	}
 	
@@ -209,6 +216,7 @@ public class AdminController {
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("transacciones",transacciones);		
 		modelAndView.addObject("fechas",fechas);		
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;	
 	}
 	
@@ -219,6 +227,7 @@ public class AdminController {
 	public ModelAndView categorias() {
 		ModelAndView modelAndView = new ModelAndView(CATEGORIAS);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 
 	}
@@ -231,6 +240,7 @@ public class AdminController {
 		
 		ModelAndView modelAndView = new ModelAndView(CATEGORIAS);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 		
 	}

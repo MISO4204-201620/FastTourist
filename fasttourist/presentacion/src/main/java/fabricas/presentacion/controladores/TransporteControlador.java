@@ -13,6 +13,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import utilidades.Constantes;
 import utilidades.utilidades;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -81,6 +82,7 @@ public class TransporteControlador {
 		modelAndView.addObject("proveedores", proveedores);
 		modelAndView.addObject("tipo", tipo);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 
@@ -150,6 +152,7 @@ public class TransporteControlador {
 		modelAndView.addObject("proveedores", proveedores);
 		modelAndView.addObject("tipo", tipoTransporte);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 
@@ -197,6 +200,7 @@ public class TransporteControlador {
 		//Se verrifica si se debe habilitar el boton para calificar
 		modelAndView.addObject("permisos", utilidades.getPermisos(id));
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 
 	}

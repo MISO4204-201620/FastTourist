@@ -28,7 +28,7 @@ public class RestPaseos {
 		
 		List<Servicio> array = (List<Servicio>) em.createNamedQuery("Servicio.findServicioPaseos")		
 				.getResultList();
-		
+		em.close();
 		return new ResponseEntity<List<Servicio>>(array, HttpStatus.OK);
 	}	
 	
@@ -43,7 +43,7 @@ public class RestPaseos {
 		String query= queryServicioByFilter(filtros);
 		
 		List<Servicio> servicios = em.createQuery(query).getResultList();
-		
+		em.close();
 		return new ResponseEntity <List<Servicio>> (servicios, HttpStatus.OK);
 		
 	}

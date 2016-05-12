@@ -32,7 +32,7 @@ public class RestAlojamiento {
 		em.getTransaction().begin();
 
 		List<Usuario> proveedores = (List<Usuario>) em.createNamedQuery("Servicio.findProveedoresByAlojamiento").getResultList();
-
+		em.close();
 		return new ResponseEntity <List<Usuario>> (proveedores, HttpStatus.OK);
 
 	}
@@ -47,7 +47,7 @@ public class RestAlojamiento {
 		List<Servicio> alojamientos;
 
 		alojamientos = (List<Servicio>) em.createNamedQuery("Servicio.findAlojamiento").getResultList();
-
+		em.close();
 		return new ResponseEntity <List<Servicio>> (alojamientos, HttpStatus.OK);
 
 	}
@@ -63,7 +63,7 @@ public class RestAlojamiento {
 		String query= queryAlojamientoByFilter(filtros);	
 
 		List<Servicio> alojamientos  = em.createQuery(query).getResultList();
-
+		em.close();
 		return new ResponseEntity <List<Servicio>> (alojamientos, HttpStatus.OK);
 
 	}
@@ -77,7 +77,7 @@ public class RestAlojamiento {
 		Servicio alojamiento = (Servicio) em.createNamedQuery("Servicio.findById")
 				.setParameter("id", id)
 				.getSingleResult();
-
+		em.close();
 		return new ResponseEntity<Servicio>(alojamiento, HttpStatus.OK);
 	}
 

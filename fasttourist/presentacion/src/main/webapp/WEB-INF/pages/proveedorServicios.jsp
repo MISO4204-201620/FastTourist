@@ -15,7 +15,7 @@
 						class="icon-ban-circle"></span> Solicitar Baja</a></li>
 				<li><a href="/presentacion/adminProveedor/editar-info/"><span
 						class="icon-pencil"></span> Editar Info</a></li>
-				<c:if test="${not empty usuarioAutenticado}">	
+				<c:if test="${not empty usuarioAutenticado and moduloMensajeria}">	
 					<li><a href="/presentacion/mensajeria/">
 						<span class="icon-envelope"></span> Mensajeria</a></li>
 				</c:if>	

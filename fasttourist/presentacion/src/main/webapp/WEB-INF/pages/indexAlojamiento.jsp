@@ -8,7 +8,7 @@
 				<li><a href="/presentacion/alimentacion/">Alimentación</a></li>
 				<li><a href="/presentacion/paseos/paseos">Paseos Turísticos</a></li>
 				<li><a href="/presentacion/paquetes/">Paquetes</a></li>
-				<c:if test="${not empty usuarioAutenticado}">	
+				<c:if test="${not empty usuarioAutenticado and moduloMensajeria}">	
 					<li><a href="/presentacion/mensajeria/">
 						<span class="icon-envelope"></span> Mensajeria</a></li>
 				</c:if>	

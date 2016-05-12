@@ -42,7 +42,7 @@ public class RestCalificaciones {
 		
 		em.persist(c);
 		em.getTransaction().commit();
-		
+		em.close();
 		return "ok";
 	}
 }

@@ -2,7 +2,6 @@ package fabricas.presentacion.controladores;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +18,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import utilidades.Constantes;
 import utilidades.utilidades;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -26,13 +26,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import fabricas.presentacion.VOs.CalificacionesVO;
 import fabricas.presentacion.VOs.PaqueteVO;
-import fabricas.presentacion.VOs.PreguntasVO;
 import fabricas.presentacion.VOs.ServicioVO;
 import fabricas.presentacion.VOs.TipoalimentacionVO;
 import fabricas.presentacion.VOs.TipotransporteVO;
-import fabricas.presentacion.VOs.UsuarioVO;
 
 @Controller
 @RequestMapping("/paquetes")
@@ -103,7 +100,7 @@ public class PaqueteControlador {
 		modelAndView.addObject("tiposAlimentacion", tiposAlimentacion);
 		modelAndView.addObject("tiposTransporte", tiposTransporte);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
-
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 	
@@ -172,7 +169,7 @@ public class PaqueteControlador {
 		modelAndView.addObject("tiposAlimentacion", tiposAlimentacion);
 		modelAndView.addObject("tiposTransporte", tiposTransporte);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
-		
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 
@@ -242,7 +239,7 @@ public class PaqueteControlador {
 		modelAndView.addObject("tiposAlimentacion", tiposAlimentacion);
 		modelAndView.addObject("tiposTransporte", tiposTransporte);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
-				
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);		
 		return modelAndView;
 	}
 	
@@ -305,6 +302,7 @@ public class PaqueteControlador {
 		session.invalidate();
 		ModelAndView modelAndView = new ModelAndView(VIEW_BUSCAR_PAQUETE);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import utilidades.Constantes;
 import utilidades.EnumPerfiles;
 import utilidades.utilidades;
 
@@ -37,6 +38,7 @@ public class BaseController {
 	public ModelAndView contactenos(ModelMap model) {
 		ModelAndView modelAndView = new ModelAndView(CONTACTENOS);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 	
@@ -50,6 +52,7 @@ public class BaseController {
 		ModelAndView modelAndView = new ModelAndView(REGISTRO);
 		modelAndView.addObject("usuario", new UsuarioVO());
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 	
@@ -91,6 +94,7 @@ public class BaseController {
 		modelAndView.addObject("response", response);
 		modelAndView.addObject("usuario", usuario);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 		
 	}
@@ -146,6 +150,7 @@ public class BaseController {
 		modelAndView.addObject("response", response);
 		modelAndView.addObject("usuario", new UsuarioVO());
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 	

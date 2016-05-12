@@ -29,7 +29,7 @@ public class RestAlimentacion {
 		em.getTransaction().begin();
 		
 		List<Usuario> proveedores = (List<Usuario>) em.createNamedQuery("Servicio.findProveedoresByAlimentacion").getResultList();
-		
+		em.close();
 		return new ResponseEntity<List<Usuario>>(proveedores, HttpStatus.OK);
 	}
 	
@@ -42,7 +42,7 @@ public class RestAlimentacion {
 		
 		List<Servicio> serviciosAlimentacion = (List<Servicio>) em.createNamedQuery("Servicio.findAlimentacion")		
 				.getResultList();
-		
+		em.close();
 		return new ResponseEntity<List<Servicio>>(serviciosAlimentacion, HttpStatus.OK);
 	}	
 	
@@ -55,7 +55,7 @@ public class RestAlimentacion {
 		List<Tipoalimentacion> tipos;
 		
 		tipos = (List<Tipoalimentacion>) em.createNamedQuery("Tipoalimentacion.findAll").getResultList();
-
+		em.close();
 		return new ResponseEntity <List<Tipoalimentacion>> (tipos, HttpStatus.OK);
 
 	}
@@ -81,7 +81,7 @@ public class RestAlimentacion {
 		String query = queryAlimentacionByFilters(filtros); 
 		
 		List<Servicio> servicios = (List<Servicio>) em.createQuery(query).getResultList();
-		
+		em.close();
 		return new ResponseEntity<List<Servicio>>(servicios, HttpStatus.OK);
 	}	
 	

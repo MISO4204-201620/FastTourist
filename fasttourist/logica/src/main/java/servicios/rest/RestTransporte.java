@@ -33,7 +33,7 @@ public class RestTransporte {
 		em.getTransaction().begin();
 
 		List<Usuario> proveedores = (List<Usuario>) em.createNamedQuery("Servicio.findProveedoresByTransporte").getResultList();
-
+		em.close();
 		return new ResponseEntity <List<Usuario>> (proveedores, HttpStatus.OK);
 
 	}
@@ -49,7 +49,7 @@ public class RestTransporte {
 		em.getTransaction().begin();
 
 		List<Tipotransporte> tipos = (List<Tipotransporte>) em.createNamedQuery("Tipotransporte.findAll").getResultList();
-
+		em.close();
 		return new ResponseEntity <List<Tipotransporte>> (tipos, HttpStatus.OK);
 
 	}
@@ -64,7 +64,7 @@ public class RestTransporte {
 		List<Servicio> transportes;
 
 		transportes = (List<Servicio>) em.createNamedQuery("Servicio.findTransporte").getResultList();
-
+		em.close();
 		return new ResponseEntity <List<Servicio>> (transportes, HttpStatus.OK);
 
 	}
@@ -80,7 +80,7 @@ public class RestTransporte {
 		String query= queryTransporteByFilter(filtros);	
 
 		List<Servicio> transportes  = em.createQuery(query).getResultList();
-
+		em.close();
 		return new ResponseEntity <List<Servicio>> (transportes, HttpStatus.OK);
 
 	}
@@ -94,7 +94,7 @@ public class RestTransporte {
 		Servicio transporte = (Servicio) em.createNamedQuery("Servicio.findById")
 				.setParameter("id", id)
 				.getSingleResult();
-
+		em.close();
 		return new ResponseEntity<Servicio>(transporte, HttpStatus.OK);
 	}
 

@@ -27,7 +27,7 @@ public class RestProductos {
 		Servicio producto = (Servicio) em.createNamedQuery("Servicio.findById")
 				.setParameter("id", id)
 				.getSingleResult();
-
+		em.close();
 		return new ResponseEntity<Servicio>(producto, HttpStatus.OK);
 	}
 }

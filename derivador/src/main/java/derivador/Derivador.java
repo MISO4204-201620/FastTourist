@@ -62,10 +62,10 @@ public class Derivador {
 			 * TODO:Tejer Aspecto
 			 */
 			properties.setProperty(Constantes.MODULO_BUSQUEDA_PERSONALIZADA,
-					"True");
+					"true");
 		} else {
 			properties.setProperty(Constantes.MODULO_BUSQUEDA_PERSONALIZADA,
-					"False");
+					"false");
 		}
 
 	}
@@ -93,11 +93,11 @@ public class Derivador {
 		if (features.contains(Constantes.MODULO_MENSAJERIA)) {
 			// Add Dependency
 			model = BinaryReplacement.addDependency(model, dependency);
-			properties.setProperty(Constantes.MODULO_MENSAJERIA, "True");
+			properties.setProperty(Constantes.MODULO_MENSAJERIA, "true");
 		} else {
 			// Remove Dependency
 			model = BinaryReplacement.removeDependency(model, dependency);
-			properties.setProperty(Constantes.MODULO_MENSAJERIA, "False");
+			properties.setProperty(Constantes.MODULO_MENSAJERIA, "false");
 		}
 		// Save pom
 		try {
@@ -114,9 +114,9 @@ public class Derivador {
 	private static void reportesFeature() {
 		// Metodo:Patron
 		if (features.contains(Constantes.MODULO_REPORTES)) {
-			properties.setProperty(Constantes.MODULO_REPORTES, "True");
+			properties.setProperty(Constantes.MODULO_REPORTES, "true");
 		} else {
-			properties.setProperty(Constantes.MODULO_REPORTES, "False");
+			properties.setProperty(Constantes.MODULO_REPORTES, "false");
 		}
 	}
 
@@ -128,9 +128,9 @@ public class Derivador {
 
 		// Metodo: Patron
 		if (features.contains(Constantes.MODULO_CALIFICACIONES)) {
-			properties.setProperty(Constantes.MODULO_CALIFICACIONES, "True");
+			properties.setProperty(Constantes.MODULO_CALIFICACIONES, "true");
 		} else {
-			properties.setProperty(Constantes.MODULO_CALIFICACIONES, "False");
+			properties.setProperty(Constantes.MODULO_CALIFICACIONES, "false");
 		}
 
 	}

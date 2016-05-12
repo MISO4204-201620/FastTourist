@@ -41,7 +41,7 @@ public class RestCrudServicios {
 		Servicio servicio = (Servicio) em.createNamedQuery("Servicio.findById")
 				.setParameter("id", id)
 				.getSingleResult();
-
+		em.close();
 		return new ResponseEntity<Servicio>(servicio, HttpStatus.OK);
 	}
 
@@ -57,6 +57,7 @@ public class RestCrudServicios {
 				.setParameter("idProveedor", idProveedor)
 				.getResultList();
 
+		em.close();
 		return new ResponseEntity <List<Servicio>> (servicio, HttpStatus.OK);
 
 	}
@@ -121,6 +122,7 @@ public class RestCrudServicios {
 		}
 
 		em.getTransaction().commit();
+		em.close();
 		return new ResponseEntity<Servicio>(servicio, HttpStatus.OK);
 	}
 
@@ -208,7 +210,7 @@ public class RestCrudServicios {
 		}
 		em.persist(servicio);
 		em.getTransaction().commit();
-
+		em.close();
 		return new ResponseEntity<Servicio>(servicio, HttpStatus.OK);
 	}
 
@@ -246,8 +248,10 @@ public class RestCrudServicios {
 
 		try{
 			em.getTransaction().commit();
+			em.close();
 			return "ok";
 		}catch(Exception e){
+			em.close();
 			return "Nok";
 		}		
 	}

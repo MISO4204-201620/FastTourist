@@ -48,9 +48,10 @@ public class RestRegistro {
 			em.persist(usuario);
 			em.flush();
 			em.getTransaction().commit();
+			em.close();
 			return new ResponseEntity <Usuario> (usuario, HttpStatus.OK);
 		}
-
+		em.close();
 		return new ResponseEntity <Usuario> (new Usuario(), HttpStatus.OK);		
 	}
 	
@@ -67,9 +68,10 @@ public class RestRegistro {
 					.setParameter("password",values[1])
 					.getSingleResult();
 			}catch(NoResultException e){
+				em.close();
 			return new ResponseEntity <Usuario> (new Usuario(), HttpStatus.OK);
 		}	
-
+		em.close();
 		return new ResponseEntity <Usuario> (usuario, HttpStatus.OK);
 	}
 	
@@ -85,9 +87,11 @@ public class RestRegistro {
 			.getSingleResult();
 		
 		String resp = usr.getNombre()+":"+usr.getApellido()+":"+usr.getIdusuario()+":"+usr.getEmail();
+		em.close();
 		return new ResponseEntity <String> (resp,HttpStatus.OK);
 		}
-		catch(NoResultException e){			
+		catch(NoResultException e){		
+			em.close();
 			return new ResponseEntity <String> ("No encontrado",HttpStatus.OK);
 		}
 	}
@@ -109,7 +113,7 @@ public class RestRegistro {
 		
 		em.persist(usuario);
 		em.getTransaction().commit();
-		
+		em.close();
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
@@ -122,7 +126,7 @@ public class RestRegistro {
 
 		List<Usuario> usuarios = (List<Usuario>) em.createNamedQuery("Usuario.findByBaja")				
 				.getResultList();
-
+		em.close();
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
 	} 
 	
@@ -143,7 +147,7 @@ public class RestRegistro {
 				
 		em.persist(usuario);
 		em.getTransaction().commit();
-		
+		em.close();
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
@@ -155,7 +159,7 @@ public class RestRegistro {
 		em.getTransaction().begin();
 		
 		List<Usuario> usuarios = (List<Usuario>) em.createNamedQuery("Usuario.findAll").getResultList();
-		
+		em.close();
 		return new ResponseEntity<List<Usuario>>(usuarios,HttpStatus.OK);
 	}
 }

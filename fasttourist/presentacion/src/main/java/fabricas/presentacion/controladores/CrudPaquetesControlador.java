@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import utilidades.Constantes;
 import utilidades.EnumPerfiles;
 import utilidades.utilidades;
 
@@ -67,6 +68,7 @@ public class CrudPaquetesControlador {
 		modelAndView.addObject("servicios", servicios);
 		modelAndView.addObject("paquetes", paquetes);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 
@@ -112,6 +114,7 @@ public class CrudPaquetesControlador {
 		modelAndView.addObject("paquete", paquete);
 		modelAndView.addObject("servicios", servicios);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 
@@ -153,6 +156,7 @@ public class CrudPaquetesControlador {
 		modelAndView.addObject("servicios", servicios);
 		modelAndView.addObject("editExitoso",true);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 
@@ -183,6 +187,7 @@ public class CrudPaquetesControlador {
 		modelAndView.addObject("paquete", paquete);
 		modelAndView.addObject("servicios", servicios);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 
@@ -221,6 +226,7 @@ public class CrudPaquetesControlador {
 		modelAndView.addObject("servicios", servicios);
 		modelAndView.addObject("crearExitoso",true);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 

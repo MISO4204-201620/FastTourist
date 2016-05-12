@@ -38,7 +38,7 @@ public class RestPagos {
 		List<Carrito> carrito = em.createNamedQuery("Carrito.findByUser")
 				.setParameter("id", id)
 				.getResultList();
-
+		em.close();
 		return new ResponseEntity<List<Carrito>>(carrito, HttpStatus.OK);
 	}
 	
@@ -56,6 +56,7 @@ public class RestPagos {
 
 		em.remove(carrito);
 		em.getTransaction().commit();
+		em.close();
 		return "ok";
 	}
 	
@@ -92,6 +93,7 @@ public class RestPagos {
 			em.remove(carro);
 		}
 		em.getTransaction().commit();
+		em.close();
 		return "ok";
 	}
 
@@ -112,7 +114,7 @@ public class RestPagos {
 		carrito.setUsuario(usuario);
 		em.persist(carrito);
 		em.getTransaction().commit();
-		
+		em.close();
 		return "El servicio se ha agregado a carrito";
 	}
 
@@ -127,7 +129,7 @@ public class RestPagos {
 		List<Carrito> carrito = em.createNamedQuery("Transacciones.getByUser").
 					setParameter("idUser", idUser).
 					setParameter("idServicio", idServicio).getResultList();
-		
+		em.close();
 		if(carrito == null || carrito.isEmpty()){
 			return "Nok";
 		}else{

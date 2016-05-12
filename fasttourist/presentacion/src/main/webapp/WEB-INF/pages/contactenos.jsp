@@ -5,10 +5,10 @@
 					<ul>
 						<li><a href="/presentacion/">Alojamiento</a></li>
 						<li><a href="/presentacion/transporte/">Transporte</a>
-						<li><a href="/presentacion/alimentacion/" class="paginaActiva">Alimentacion</a></li>
+						<li><a href="/presentacion/alimentacion/">Alimentacion</a></li>
 						<li><a href="/presentacion/paseos/paseos">Paseos Turisticos</a></li>
 						<li><a href="/presentacion/paquetes/">Paquetes</a></li>		
-						<c:if test="${not empty usuarioAutenticado}">	
+						<c:if test="${not empty usuarioAutenticado and moduloMensajeria}">	
 							<li><a href="/presentacion/mensajeria/">
 								<span class="icon-envelope"></span> Mensajeria</a></li>
 						</c:if>																			

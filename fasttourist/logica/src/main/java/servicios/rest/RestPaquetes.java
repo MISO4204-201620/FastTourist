@@ -43,6 +43,7 @@ public class RestPaquetes {
 
 		paquetes = (List<Paquete>) em.createNamedQuery("Paquete.findAll").getResultList();
 
+		em.close();
 		return new ResponseEntity <List<Paquete>> (paquetes, HttpStatus.OK);
 
 	}
@@ -59,6 +60,7 @@ public class RestPaquetes {
 				.setParameter("id", id)
 				.getResultList();
 
+		em.close();
 		return new ResponseEntity <List<Servicio>> (servicios, HttpStatus.OK);
 
 	}
@@ -89,6 +91,7 @@ public class RestPaquetes {
 				.setParameter("id", id)
 				.getSingleResult();
 
+		em.close();
 		return new ResponseEntity<Paquete>(paquete, HttpStatus.OK);
 	}
 	
@@ -106,6 +109,7 @@ public class RestPaquetes {
 		paquetes = (List<Paquete>) em.createNamedQuery("Paquete.findByProvider").setParameter("idProveedor", idProveedor).
 				getResultList();
 
+		em.close();
 		return new ResponseEntity <List<Paquete>> (paquetes, HttpStatus.OK);
 
 	}
@@ -148,6 +152,7 @@ public class RestPaquetes {
 		em.persist(paquete);
 		
 		em.getTransaction().commit();
+		em.close();
 		return new ResponseEntity<Paquete>(paquete, HttpStatus.OK);
 	}
 	
@@ -190,6 +195,7 @@ public class RestPaquetes {
 		em.persist(paquete);
 		
 		em.getTransaction().commit();
+		em.close();
 		return new ResponseEntity<Paquete>(paquete, HttpStatus.OK);
 	}
 	
@@ -202,6 +208,7 @@ public class RestPaquetes {
 		em.remove(paquete);
 
 		em.getTransaction().commit();
+		em.close();
 		return "ok";
 	}
 	

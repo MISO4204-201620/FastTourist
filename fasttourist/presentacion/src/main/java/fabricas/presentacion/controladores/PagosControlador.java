@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import utilidades.Constantes;
 import utilidades.utilidades;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -67,6 +68,7 @@ public class PagosControlador {
 		modelAndView.addObject("impuestos", impuestos);
 		modelAndView.addObject("total", total);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 
 	}
@@ -112,6 +114,7 @@ public class PagosControlador {
 		modelAndView.addObject("impuestos", impuestos);
 		modelAndView.addObject("total", total);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 
 	}
@@ -140,6 +143,7 @@ public class PagosControlador {
 		modelAndView.addObject("carrito", carrito);
 		modelAndView.addObject("pagoExitoso",result);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 
 	}

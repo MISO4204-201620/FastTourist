@@ -15,6 +15,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import utilidades.Constantes;
 import utilidades.utilidades;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -74,7 +75,7 @@ public class AlimentacionControlador {
 		mav.addObject("proveedores", proveedores);
 		mav.addObject("tipo", tipo);
 		mav.addObject("usuarioAutenticado",utilidades.getSessionUser());
-		
+		mav.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return mav;
 	}
 	
@@ -126,7 +127,7 @@ public class AlimentacionControlador {
 		mav.addObject("proveedores", proveedores);
 		mav.addObject("tipo", tipo);
 		mav.addObject("usuarioAutenticado",utilidades.getSessionUser());
-		
+		mav.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return mav;
 	}
 
@@ -157,7 +158,7 @@ public class AlimentacionControlador {
 		modelAndView.addObject("servicio", servicio);
 		modelAndView.addObject("promCalificacion", promCalificacion);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
-        
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 	
@@ -207,7 +208,7 @@ public class AlimentacionControlador {
 		session.invalidate();
 		ModelAndView modelAndView = new ModelAndView(VIEW_SERVICIOS_ALIMENTACION);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
-		
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 }

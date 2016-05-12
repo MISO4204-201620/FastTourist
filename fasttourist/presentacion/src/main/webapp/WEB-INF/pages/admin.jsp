@@ -31,7 +31,7 @@
 				</c:choose>
 				<li><a href="/presentacion/admin/categorias/"><span
 						class="icon-plus"></span> Categorías Adicionales</a></li>
-				<c:if test="${not empty usuarioAutenticado}">	
+				<c:if test="${not empty usuarioAutenticado and moduloMensajeria}">	
 					<li><a href="/presentacion/mensajeria/">
 						<span class="icon-envelope"></span> Mensajeria</a></li>
 				</c:if>		

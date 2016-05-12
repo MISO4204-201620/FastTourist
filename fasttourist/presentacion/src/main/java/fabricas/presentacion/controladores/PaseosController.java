@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import utilidades.Constantes;
 import utilidades.utilidades;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -58,7 +59,7 @@ public class PaseosController {
 		ModelAndView modelAndView = new ModelAndView(VIEW_PASEOS);
 		modelAndView.addObject("servicios", servicios);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
-
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 	
@@ -86,6 +87,7 @@ public class PaseosController {
 		ModelAndView modelAndView = new ModelAndView(VIEW_PASEOS);
 		modelAndView.addObject("servicios", servicios);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 	
@@ -125,6 +127,7 @@ public class PaseosController {
 		//Se verrifica si se debe habilitar el boton para calificar
 		modelAndView.addObject("permisos", utilidades.getPermisos(id));
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 
