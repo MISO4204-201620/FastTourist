@@ -17,7 +17,7 @@
 				</c:if>
 				<c:if test="${not empty usuarioAutenticado and moduloBusquedas}">
 					<li><a href="/presentacion/busquedas/" class="paginaActiva">
-							<span class="icon-envelope"></span> Mis busquedas
+							<span class="icon-zoom-in"></span> Mis busquedas
 					</a></li>
 				</c:if>
 			</ul>
@@ -38,28 +38,75 @@
 				<c:forEach items="${busquedas}" var="busqueda">
 					<li class="span3">
 						<div class="product-box">
-							<p class="title">
-								<b>Visto el:</b>
-							</hp>
-							<p class="title" style="color:#eb4800 !important">
+							<p><b>Visto el</b>
+							<span class="title">
 								<b><fmt:formatDate value="${busqueda.fecha}"
-									pattern="dd-MM-yyyy hh:mm:ss" /></b>
+										pattern="dd-MM-yyyy hh:mm:ss" /></b>
+							</span>
 							</p>
-							<p class="title">Categoría: ${busqueda.servicio.categoria.nombre}</p>
-							<span class="sale_tag"></span> 
-							<a href="/presentacion/getAlojamiento/${busqueda.servicio.idservicios}/">
-								<img alt="${busqueda.servicio.nombre}"
-								src="${busqueda.servicio.rutaGaleria}"
-								style="height: 150px; max-with: 200px">
-							</a> <br /> 
-										
-							<p class="title">${busqueda.servicio.nombre}</p>
+							<p>Categoría:
+								${busqueda.servicio.categoria.nombre}</p>
+							<span class="sale_tag"></span>
 							
-							<p class="buttons center">
-								<a
-									href="/presentacion/getAlojamiento/${busqueda.servicio.idservicios}/">
-									<button class="btn" type="button">Ver Detalle</button>
+							<p>${busqueda.servicio.nombre}</p>
+
+							<c:if test="${busqueda.servicio.categoria.idcategorias =='1'}">
+								<a href="/presentacion/getAlojamiento/${busqueda.servicio.idservicios}/">
+									<img alt="${busqueda.servicio.nombre}"
+									src="${busqueda.servicio.rutaGaleria}"
+									style="height: 100px; max-with: 150px">
 								</a>
+								<br />
+							</c:if>
+
+							<c:if test="${busqueda.servicio.categoria.idcategorias =='2'}">
+								<a href="/presentacion/alimentacion/getAlimentacion/${busqueda.servicio.idservicios}/">
+									<img alt="${busqueda.servicio.nombre}"
+									src="${busqueda.servicio.rutaGaleria}"
+									style="height: 100px; max-with: 150px">
+								</a>
+								<br />
+							</c:if>
+							
+							<c:if test="${busqueda.servicio.categoria.idcategorias =='3'}">
+								<a href="/presentacion/transporte/getTransporte/${busqueda.servicio.idservicios}/">
+									<img alt="${busqueda.servicio.nombre}"
+									src="${busqueda.servicio.rutaGaleria}"
+									style="height: 100px; max-with: 150px">
+								</a>
+								<br />
+							</c:if>
+							
+							<c:if test="${busqueda.servicio.categoria.idcategorias =='4'}">
+								<a href="/presentacion/paseos/getServicio/${busqueda.servicio.idservicios}/">
+									<img alt="${busqueda.servicio.nombre}"
+									src="${busqueda.servicio.rutaGaleria}"
+									style="height: 100px; max-with: 150px">
+								</a>
+								<br />
+							</c:if>
+							<span class="sale_tag"></span>
+							<p class="buttons center">
+								<c:if test="${busqueda.servicio.categoria.idcategorias =='1'}">
+									<a href="/presentacion/getAlojamiento/${busqueda.servicio.idservicios}/">
+										<button class="btn" type="button">Ver Detalle</button>
+									</a>
+								</c:if>
+								<c:if test="${busqueda.servicio.categoria.idcategorias =='2'}">
+									<a href="/presentacion/alimentacion/getAlimentacion/${busqueda.servicio.idservicios}/">
+										<button class="btn" type="button">Ver Detalle</button>
+									</a>
+								</c:if>
+								<c:if test="${busqueda.servicio.categoria.idcategorias =='3'}">
+									<a href="/presentacion/transporte/getTransporte/${busqueda.servicio.idservicios}/">
+										<button class="btn" type="button">Ver Detalle</button>
+									</a>
+								</c:if>
+								<c:if test="${busqueda.servicio.categoria.idcategorias =='4'}">
+									<a href="/presentacion/paseos/getServicio/${busqueda.servicio.idservicios}/">
+										<button class="btn" type="button">Ver Detalle</button>
+									</a>
+								</c:if>
 							</p>
 						</div>
 					</li>

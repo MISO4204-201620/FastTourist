@@ -14,5 +14,6 @@ public class Constantes {
 	public static final String MODULO_REPORTES ="ModuloReportes";
 	
 	public static final String POM_LOCATION="/fasttouristEAR/pom.xml";
+	public static final String POM_LOCATION_PRESENTACION="/presentacion/pom.xml";
 	
 }

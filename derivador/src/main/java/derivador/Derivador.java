@@ -1,11 +1,15 @@
 package derivador;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
+import org.apache.maven.model.Plugin;
+import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
 
 public class Derivador {
 
@@ -55,17 +59,50 @@ public class Derivador {
 	 * tipo de variabilidad usada: Aspectos
 	 **/
 	private static void busquedaFeature() {
+		
+		Model model = null;
+		Plugin plugin = null;
+		try {
+			model = BinaryReplacement.loadPomFile(Constantes.RUTA_REPO_LOCAL + Constantes.POM_LOCATION_PRESENTACION);
+			//Create Plugin
+			plugin = new Plugin();
+			plugin.setGroupId("org.codehaus.mojo");
+			plugin.setArtifactId("aspectj-maven-plugin");
+			String pluginConfig=
+							"<configuration>"  
+								+ "<complianceLevel>1.7</complianceLevel>" 
+								+ "<aspectLibraries>"
+						          +  "<aspectLibrary>"
+						          	+ "<groupId>fastfactory</groupId>"
+						            + "<artifactId>aspectos</artifactId>"
+						          + "</aspectLibrary>"
+						        + "</aspectLibraries>"
+						   +"</configuration>";
+			
+			 Xpp3Dom dom=Xpp3DomBuilder.build(new ByteArrayInputStream(pluginConfig.getBytes()),"UTF-8");
+			plugin.setConfiguration(dom);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
 
 		// Metodo: Aspectos
 		if (features.contains(Constantes.MODULO_BUSQUEDA_PERSONALIZADA)) {
-			/**
-			 * TODO:Tejer Aspecto
-			 */
+			// Add Plugin
+			model = BinaryReplacement.addPlugin(model, plugin);
 			properties.setProperty(Constantes.MODULO_BUSQUEDA_PERSONALIZADA,
 					"true");
 		} else {
+			// Remove Plugin
+			model = BinaryReplacement.removePlugin(model, plugin);
 			properties.setProperty(Constantes.MODULO_BUSQUEDA_PERSONALIZADA,
 					"false");
+		}
+		// Save pom
+		try {
+			BinaryReplacement.writePomFile(Constantes.RUTA_REPO_LOCAL +Constantes.POM_LOCATION_PRESENTACION, model);
+		} catch (IOException e) {
+			System.out.println(e);
 		}
 
 	}

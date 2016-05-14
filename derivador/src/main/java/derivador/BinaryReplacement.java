@@ -2,6 +2,7 @@ package derivador;
 
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
+import org.apache.maven.model.Plugin;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 import org.codehaus.plexus.util.WriterFactory;
@@ -77,6 +78,40 @@ public class BinaryReplacement {
 		return model;
 	}
 
+	public static Model addPlugin(Model model, Plugin plugin) {
+
+		Boolean validate = Boolean.TRUE;
+
+		// verifica que no exita aun la dependecia
+		for (Plugin p: model.getBuild().getPlugins()) {
+			if (p.getArtifactId().equals(plugin.getArtifactId())) {
+				validate = Boolean.FALSE;
+				System.out.print("Ya existe el plugin: "
+						+ p.getArtifactId() + "\n");
+				break;
+			}
+		}
+		// Si no existe la agrega
+		if (validate) {
+			model.getBuild().addPlugin(plugin);
+		}
+
+		return model;
+	}
+	
+	public static Model removePlugin(Model model, Plugin plugin) {
+
+		model.getBuild().removePlugin(plugin);
+
+		for (Plugin p : model.getBuild().getPlugins()) {
+			if (p.getArtifactId().equals(plugin.getArtifactId())) {
+				model.getBuild().removePlugin(plugin);
+				break;
+			}
+		}
+		return model;
+	}
+	
 	public static void writePomFile(String pomLocation, Model model)
 			throws IOException {
 		MavenXpp3Writer mavenXpp3Writer = new MavenXpp3Writer();
