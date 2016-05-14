@@ -14,8 +14,8 @@
 					</c:otherwise>
 				</c:choose>
 				
-				<li><a href="/presentacion/alimentacion/"><span
-						class="icon-file"></span> Historicos</a></li>
+				<li><a href="/presentacion/transacciones/historicos"><span
+						class="icon-file"></span> Históricos</a></li>
 				<li><a href="/presentacion/admin/transacciones"><span
 						class="icon-refresh"></span> Transacciones</a></li>
 

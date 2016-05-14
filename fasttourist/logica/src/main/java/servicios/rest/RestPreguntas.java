@@ -50,7 +50,7 @@ public class RestPreguntas {
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 		
-		List<Preguntas> preguntas = (List<Preguntas>) em.createNamedQuery("Preguntas.findByUserId")
+		List<Preguntas> preguntas = (List<Preguntas>) em.createNamedQuery("Preguntas.findAllByUserId")
 				.setParameter("id", id)
 				.getResultList();
 		em.close();

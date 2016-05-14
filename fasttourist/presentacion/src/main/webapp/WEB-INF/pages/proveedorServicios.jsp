@@ -5,13 +5,13 @@
 			<ul>
 				<li><a href="/presentacion/adminProveedor/"
 					class="paginaActiva"><span class="icon-home"></span> Servicios</a></li>
-				<li><a href="/presentacion/transporte/"><span
+				<li><a href="/presentacion/moduloRespuestas/"><span
 						class="question-sign"></span> Respuestas</a>
-				<li><a href="/presentacion/alimentacion/"><span
+				<li><a href="/presentacion/transacciones/historicos"><span
 						class="icon-file"></span> Historicos</a></li>
-				<li><a href="/presentacion/paseos/paseos"><span
+				<li><a href="/presentacion/admin/transacciones"><span
 						class="icon-refresh"></span> Transacciones</a></li>
-				<li><a href="/presentacion/paquetes/"><span
+				<li><a href="/presentacion/adminProveedor/solicitarBaja/"><span
 						class="icon-ban-circle"></span> Solicitar Baja</a></li>
 				<li><a href="/presentacion/adminProveedor/editar-info/"><span
 						class="icon-pencil"></span> Editar Info</a></li>

@@ -16,6 +16,8 @@ import java.util.Date;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Transacciones.findAll", query="SELECT t FROM Transacciones t"),
+	@NamedQuery(name="Transacciones.findAllDistinct", query="SELECT t.servicio.nombre FROM Transacciones t WHERE t.servicio.usuario.idusuario= :id"),
+	@NamedQuery(name="Transacciones.findByProvider", query="SELECT t FROM Transacciones t WHERE t.servicio.usuario.idusuario= :id"),
 	@NamedQuery(name="Transacciones.getMaxId", query="SELECT MAX(t.idtransacciones) FROM Transacciones t"),
 	@NamedQuery(name="Transacciones.getByUser", query="SELECT t FROM Transacciones t WHERE t.usuario.idusuario= :idUser AND t.servicio.idservicios = :idServicio"),
 	@NamedQuery(name="Transacciones.findByUser", query="SELECT t FROM Transacciones t WHERE t.usuario.idusuario= :idUser")

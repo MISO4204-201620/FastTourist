@@ -30,13 +30,13 @@
 				<li><a href="/presentacion/admin/"><span class="icon-home"></span> Proveedores</a></li>
 				<li><a href="/presentacion/transporte/"><span
 						class="question-sign"></span> Respuestas</a>
-				<li><a href="/presentacion/alimentacion/"><span
+				<li><a href="/presentacion/transacciones/historicos/"><span
 						class="icon-file"></span> Historicos</a></li>
 				<li><a href="/presentacion/admin/transacciones" class="paginaActiva"><span
 						class="icon-refresh"></span> Transacciones</a></li>
 				<li><a href="/presentacion/admin/solicitudes-baja"><span
 						class="icon-ban-circle"></span> Solicitudes de Baja</a></li>
-				<c:if test="${not empty usuarioAutenticado and moduloMensajeria}">	
+				<c:if test="${not empty usuarioAutenticado}">	
 					<li><a href="/presentacion/mensajeria/">
 						<span class="icon-envelope"></span> Mensajeria</a></li>
 				</c:if>	

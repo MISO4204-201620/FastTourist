@@ -19,17 +19,34 @@ import fabricas.entidades.Transacciones;
 public class RestTransaccion {
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/get/{id}/", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
+	@RequestMapping(value = "/getByProvider/{id}", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
 	public ResponseEntity<List<Transacciones>> getTransacciones(@PathVariable int id) {
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 
-		List<Transacciones> tr = (List<Transacciones>) em.createNamedQuery("Transacciones.findByUserId")
+		List<Transacciones> tr = (List<Transacciones>) em.createNamedQuery("Transacciones.findByProvider")
 				.setParameter("id", id)
 				.getResultList();
-		em.close();
+		
+		
 		return new ResponseEntity<List<Transacciones>>(tr, HttpStatus.OK);
 	} 
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/getDistinct/{id}/", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
+	public ResponseEntity<List<String>> getTransaccionesDistinct(@PathVariable int id) {
+
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+
+		List<String> tr = em.createNamedQuery("Transacciones.findAllDistinct")
+				.setParameter("id", id)
+				.getResultList();
+		
+		System.out.println("Envio rta");
+
+		return new ResponseEntity<List<String>>(tr, HttpStatus.OK);
+	}	 
 
 }
