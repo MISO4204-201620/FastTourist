@@ -74,6 +74,7 @@ public class AlojamientoControlador {
 		//Pasar a pantalla el usuario autenticado		
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 
@@ -132,6 +133,7 @@ public class AlojamientoControlador {
 		modelAndView.addObject("proveedores", proveedores);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 
@@ -181,7 +183,9 @@ public class AlojamientoControlador {
 		//Se verrifica si se debe habilitar el boton para calificar
 		modelAndView.addObject("permisos", utilidades.getPermisos(id));
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("idusuarioAutenticado",utilidades.getIdUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 
 	}

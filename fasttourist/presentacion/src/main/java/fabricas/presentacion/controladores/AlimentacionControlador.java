@@ -76,6 +76,7 @@ public class AlimentacionControlador {
 		mav.addObject("tipo", tipo);
 		mav.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		mav.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		mav.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return mav;
 	}
 	
@@ -128,6 +129,7 @@ public class AlimentacionControlador {
 		mav.addObject("tipo", tipo);
 		mav.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		mav.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		mav.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return mav;
 	}
 
@@ -158,7 +160,9 @@ public class AlimentacionControlador {
 		modelAndView.addObject("servicio", servicio);
 		modelAndView.addObject("promCalificacion", promCalificacion);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("idusuarioAutenticado",utilidades.getIdUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 	
@@ -209,6 +213,7 @@ public class AlimentacionControlador {
 		ModelAndView modelAndView = new ModelAndView(VIEW_SERVICIOS_ALIMENTACION);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 }

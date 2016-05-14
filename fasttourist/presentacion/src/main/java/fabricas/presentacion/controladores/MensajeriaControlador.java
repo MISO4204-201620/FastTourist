@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import utilidades.Constantes;
 import utilidades.utilidades;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -71,6 +72,7 @@ public class MensajeriaControlador {
 				utilidades.getSessionUser());
 		modelAndView.addObject("usuarios", usuarios);
 		modelAndView.addObject("perfil",utilidades.getPerfil());
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 
 		return modelAndView;
 	}
@@ -122,6 +124,7 @@ public class MensajeriaControlador {
 		modelAndView.addObject("usuarioAutenticado",
 				utilidades.getSessionUser());
 		modelAndView.addObject("perfil",utilidades.getPerfil());
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 	

@@ -11,22 +11,19 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the usuarios database table.
  * 
  */
 @Entity
-@Table(name="usuarios")
+@Table(name = "usuarios")
 @NamedQueries({
-	@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u"),
-	@NamedQuery(name="Usuario.findById", query="SELECT u FROM Usuario u where u.idusuario = :id"),
-	@NamedQuery(name="Usuario.findByEmail", query="SELECT u FROM Usuario u WHERE u.email = :email"),
-	@NamedQuery(name="Usuario.authenticate", query="SELECT u FROM Usuario u WHERE u.email = :email and u.password=:password"),
-	@NamedQuery(name="Usuario.findProveedores", query="SELECT u FROM Usuario u where u.perfil = 1"),
-	@NamedQuery(name="Usuario.findSolicitudesBaja", query="SELECT u FROM Usuario u where u.baja = 1 and u.perfil=1")
-	})
-
+		@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+		@NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u where u.idusuario = :id"),
+		@NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email"),
+		@NamedQuery(name = "Usuario.authenticate", query = "SELECT u FROM Usuario u WHERE u.email = :email and u.password=:password"),
+		@NamedQuery(name = "Usuario.findProveedores", query = "SELECT u FROM Usuario u where u.perfil = 1"),
+		@NamedQuery(name = "Usuario.findSolicitudesBaja", query = "SELECT u FROM Usuario u where u.baja = 1 and u.perfil=1") })
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@GeneratedValue
@@ -42,7 +39,7 @@ public class Usuario implements Serializable {
 	private String email;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="fecha_creacion")
+	@Column(name = "fecha_creacion")
 	private Date fechaCreacion;
 
 	private String login;
@@ -52,60 +49,63 @@ public class Usuario implements Serializable {
 	private String password;
 
 	private String telefono;
-	
+
 	private boolean baja;
-	
-	//bi-directional many-to-one association to Calificaciones
-	@OneToMany(mappedBy="usuario")
+
+	// bi-directional many-to-one association to Calificaciones
+	@OneToMany(mappedBy = "usuario")
 	@JsonIgnore
 	private List<Calificaciones> Calificaciones;
-	
 
-	//bi-directional many-to-one association to Pregunta
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to Pregunta
+	@OneToMany(mappedBy = "usuario")
 	@JsonBackReference
 	private List<Preguntas> preguntas;
 
-	//bi-directional many-to-one association to Carrito
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to Carrito
+	@OneToMany(mappedBy = "usuario")
 	@JsonBackReference
 	private List<Carrito> carrito;
-	
-	//bi-directional many-to-one association to Transacciones
-	@OneToMany(mappedBy="usuario")
+
+	// bi-directional many-to-one association to Transacciones
+	@OneToMany(mappedBy = "usuario")
 	@JsonBackReference
 	private List<Transacciones> transacciones;
-	
-	//bi-directional many-to-one association to Log
-	@OneToMany(mappedBy="usuarioBean")
-	
+
+	// bi-directional many-to-one association to Log
+	@OneToMany(mappedBy = "usuarioBean")
 	private List<Log> logs;
 
-	//bi-directional many-to-one association to Servicio
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to Servicio
+	@OneToMany(mappedBy = "usuario")
 	@JsonBackReference
 	private List<Servicio> servicios;
-	
-	//bi-directional many-to-one association to Servicio
-	@OneToMany(mappedBy="usuario")
+
+	// bi-directional many-to-one association to Servicio
+	@OneToMany(mappedBy = "usuario")
 	@JsonBackReference
 	private List<Paquete> paquetes;
 
-	//bi-directional many-to-one association to Perfile
+	// bi-directional many-to-one association to Perfile
 	@ManyToOne
-	@JoinColumn(name="perfil")
+	@JoinColumn(name = "perfil")
 	@JsonManagedReference
 	private Perfiles perfil;
-	
-	//bi-directional many-to-one association to Mensajeria
-		@JsonBackReference
-		@OneToMany(mappedBy="destinatario")
-		private List<Mensajeria> mensajeDestinatario;
 
-		//bi-directional many-to-one association to Mensajeria
-		@JsonBackReference
-		@OneToMany(mappedBy="remitente")
-		private List<Mensajeria> mensajeRemitente;
+	// bi-directional many-to-one association to Mensajeria
+	@JsonBackReference
+	@OneToMany(mappedBy = "destinatario")
+	private List<Mensajeria> mensajeDestinatario;
+
+	// bi-directional many-to-one association to Mensajeria
+	@JsonBackReference
+	@OneToMany(mappedBy = "remitente")
+	private List<Mensajeria> mensajeRemitente;
+
+	// bi-directional many-to-one association to busqueda
+	@OneToMany(mappedBy = "usuario")
+	@JsonIgnore
+	private List<Busquedas> busqueda;
 
 	public Usuario() {
 	}
@@ -189,15 +189,16 @@ public class Usuario implements Serializable {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+
 	@JsonIgnore
 	public List<Calificaciones> getCalificaciones() {
 		return this.Calificaciones;
 	}
+
 	@JsonIgnore
 	public void setCalificaciones(List<Calificaciones> Calificaciones) {
 		this.Calificaciones = Calificaciones;
 	}
-
 
 	public List<Carrito> getCarrito() {
 		return carrito;
@@ -237,7 +238,6 @@ public class Usuario implements Serializable {
 		this.servicios = servicios;
 	}
 
-
 	public List<Transacciones> getTransacciones() {
 		return this.transacciones;
 	}
@@ -246,8 +246,6 @@ public class Usuario implements Serializable {
 		this.transacciones = transacciones;
 	}
 
-	
-
 	public List<Preguntas> getPreguntas() {
 		return this.preguntas;
 	}
@@ -255,7 +253,6 @@ public class Usuario implements Serializable {
 	public void setPreguntas(List<Preguntas> preguntas) {
 		this.preguntas = preguntas;
 	}
-
 
 	public Perfiles getPerfil() {
 		return this.perfil;
@@ -280,7 +277,7 @@ public class Usuario implements Serializable {
 	public void setBaja(boolean baja) {
 		this.baja = baja;
 	}
-	
+
 	public List<Mensajeria> getMensajeRemitente() {
 		return mensajeRemitente;
 	}
@@ -297,5 +294,12 @@ public class Usuario implements Serializable {
 		this.mensajeDestinatario = mensajeDestinatario;
 	}
 
+	public List<Busquedas> getBusqueda() {
+		return busqueda;
+	}
+
+	public void setBusqueda(List<Busquedas> busqueda) {
+		this.busqueda = busqueda;
+	}
 
 }

@@ -101,6 +101,7 @@ public class PaqueteControlador {
 		modelAndView.addObject("tiposTransporte", tiposTransporte);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 	
@@ -170,6 +171,7 @@ public class PaqueteControlador {
 		modelAndView.addObject("tiposTransporte", tiposTransporte);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 
@@ -239,7 +241,9 @@ public class PaqueteControlador {
 		modelAndView.addObject("tiposAlimentacion", tiposAlimentacion);
 		modelAndView.addObject("tiposTransporte", tiposTransporte);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
-		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);		
+		modelAndView.addObject("idusuarioAutenticado",utilidades.getIdUser());
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);	
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 	
@@ -303,6 +307,7 @@ public class PaqueteControlador {
 		ModelAndView modelAndView = new ModelAndView(VIEW_BUSCAR_PAQUETE);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 }

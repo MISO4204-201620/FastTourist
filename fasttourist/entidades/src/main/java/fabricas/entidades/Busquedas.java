@@ -12,12 +12,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Busquedas.findAll", query="SELECT b FROM Busquedas b"),
-	@NamedQuery(name="Busquedas.findByUser", query="SELECT  b FROM Busquedas b WHERE b.usuario.idusuario= :iduser")
+	@NamedQuery(name="Busquedas.findByUser", query="SELECT  b FROM Busquedas b WHERE b.usuario.idusuario= :iduser order by b.fecha desc")
 })
 public class Busquedas implements Serializable {
 
@@ -27,7 +25,7 @@ public class Busquedas implements Serializable {
 	private static final long serialVersionUID = -6517080757102444764L;
 
 	@Id
-	private int idbusquedas;
+	private int id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
@@ -35,24 +33,22 @@ public class Busquedas implements Serializable {
 	//bi-directional many-to-one association to Servicio
 	@ManyToOne
 	@JoinColumn(name="servicio")
-	@JsonManagedReference
 	private Servicio servicio;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="usuario")
-	@JsonManagedReference
 	private Usuario usuario;
 
 	public Busquedas() {
 	}
 
-	public int getIdbusquedas() {
-		return this.idbusquedas;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setIdbusquedas(int idbusquedas) {
-		this.idbusquedas = idbusquedas;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Date getFecha() {

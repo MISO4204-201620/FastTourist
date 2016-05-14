@@ -69,6 +69,7 @@ public class PagosControlador {
 		modelAndView.addObject("total", total);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 
 	}
@@ -115,6 +116,7 @@ public class PagosControlador {
 		modelAndView.addObject("total", total);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 
 	}
@@ -144,6 +146,7 @@ public class PagosControlador {
 		modelAndView.addObject("pagoExitoso",result);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 
 	}

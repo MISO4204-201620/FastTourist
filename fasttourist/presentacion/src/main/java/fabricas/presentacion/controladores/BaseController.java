@@ -1,9 +1,14 @@
 package fabricas.presentacion.controladores;
  
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,6 +41,7 @@ public class BaseController {
 	 */
 	@RequestMapping(value = "/contactenos", method = RequestMethod.GET)
 	public ModelAndView contactenos(ModelMap model) {
+	
 		ModelAndView modelAndView = new ModelAndView(CONTACTENOS);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
@@ -53,6 +59,7 @@ public class BaseController {
 		modelAndView.addObject("usuario", new UsuarioVO());
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 	
@@ -95,6 +102,7 @@ public class BaseController {
 		modelAndView.addObject("usuario", usuario);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 		
 	}
@@ -151,6 +159,7 @@ public class BaseController {
 		modelAndView.addObject("usuario", new UsuarioVO());
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 	

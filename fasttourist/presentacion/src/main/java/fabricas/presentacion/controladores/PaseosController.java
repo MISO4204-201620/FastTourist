@@ -60,6 +60,7 @@ public class PaseosController {
 		modelAndView.addObject("servicios", servicios);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 	
@@ -88,6 +89,7 @@ public class PaseosController {
 		modelAndView.addObject("servicios", servicios);
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 	
@@ -127,7 +129,9 @@ public class PaseosController {
 		//Se verrifica si se debe habilitar el boton para calificar
 		modelAndView.addObject("permisos", utilidades.getPermisos(id));
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		modelAndView.addObject("idusuarioAutenticado",utilidades.getIdUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
 		return modelAndView;
 	}
 

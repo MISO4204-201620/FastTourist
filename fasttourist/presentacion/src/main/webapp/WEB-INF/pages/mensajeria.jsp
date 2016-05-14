@@ -17,6 +17,11 @@
 						<li><a href="/presentacion/mensajeria/" class="paginaActiva">
 							<span class="icon-envelope"></span> Mensajeria</a></li>
 					</c:if>
+					<c:if test="${not empty usuarioAutenticado and moduloBusquedas}">
+							<li><a href="/presentacion/busquedas/">
+									<span class="icon-zoom-in"></span> Mis busquedas
+							</a></li>
+						</c:if>	
 				</c:if>
 
 				<!-- Menu del proveedor -->

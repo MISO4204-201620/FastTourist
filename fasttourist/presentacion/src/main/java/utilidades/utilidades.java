@@ -56,4 +56,12 @@ public class utilidades {
 		return id;
 	}
 
+	/**Recupera el id del usuario autenticado*/
+	public static Integer getIdUser(){
+		if(isUserAutenticado()){
+			return getSessionIdUser();
+		}else{
+			return null;
+		}
+	}
 }

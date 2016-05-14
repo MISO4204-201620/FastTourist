@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.math.BigDecimal;
@@ -117,6 +118,11 @@ public class Servicio implements Serializable {
 	@OneToMany(mappedBy="servicio",cascade=CascadeType.REMOVE)
 	@JsonBackReference
 	private List<Transacciones> transacciones;
+	
+	//bi-directional many-to-one association to Pregunta
+	@OneToMany(mappedBy="servicio",cascade=CascadeType.REMOVE)
+	@JsonIgnore
+	private List<Busquedas> busqueda;
 	
 	public Servicio() {
 	}
@@ -299,6 +305,14 @@ public class Servicio implements Serializable {
 
 	public void setTransacciones(List<Transacciones> transacciones) {
 		this.transacciones = transacciones;
+	}
+
+	public List<Busquedas> getBusqueda() {
+		return busqueda;
+	}
+
+	public void setBusqueda(List<Busquedas> busqueda) {
+		this.busqueda = busqueda;
 	}
 
 }

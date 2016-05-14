@@ -95,13 +95,17 @@
 			<version>${jstl.version}</version>
 		</dependency>
 
-		<!-- Entidades -->
-		<!-- dependency>
-			<groupId>fabricas</groupId>
-			<artifactId>entidades</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency-->
+
+		 <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>fastfactory</groupId>
+            <artifactId>aspectos</artifactId>
+        </dependency>
+        
 	</dependencies>
 	<build>
 		<finalName>presentacion</finalName>
@@ -140,6 +144,21 @@
 					<path>/FastTouristApp</path>
 				</configuration>
 			</plugin>
+			
+			<!-- Plugin para tejer aspecto -->
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <configuration>
+                	<complianceLevel>1.7</complianceLevel>
+                    <aspectLibraries>
+                        <aspectLibrary>
+                            <groupId>fastfactory</groupId>
+                            <artifactId>aspectos</artifactId>
+                        </aspectLibrary>
+                    </aspectLibraries>
+                </configuration>
+            </plugin>
 
 		</plugins>
 	</build>

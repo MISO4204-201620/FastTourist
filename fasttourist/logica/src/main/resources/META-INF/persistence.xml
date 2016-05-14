@@ -24,6 +24,7 @@
 		<class>fabricas.entidades.Preguntas</class>
 		<class>fabricas.entidades.Carrito</class>
 		<class>fabricas.entidades.Mensajeria</class>
+		<class>fabricas.entidades.Busquedas</class>
 		
 		<properties>
             <property name="hibernate.connection.autocommit" value="true" />
