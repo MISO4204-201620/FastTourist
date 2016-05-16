@@ -92,7 +92,7 @@ public class BaseController {
 			session.setAttribute("userId", usuario.getIdusuario());
 			session.setAttribute("userCorreo", usuario.getEmail());
 			session.setAttribute("userPerfil", usuario.getPerfil().getIdperfil());
-			response= "Se ha registrado con éxito";
+			response= "Se ha registrado con Ã©xito";
 		}else{
 			response= "Ya hay un usuario registrado con ese correo!";
 		}
@@ -137,7 +137,7 @@ public class BaseController {
 			session.setAttribute("userPerfil", usuario.getPerfil().getIdperfil());
 			response= "Te has autenticado correctamente";
 			
-			//Si se autenticó un proveedor, se redirecciona a index del proveedor
+			//Si se autenticÃ³ un proveedor, se redirecciona a index del proveedor
 			if(usuario.getPerfil().getIdperfil()==EnumPerfiles.PROVEEDOR.getValue()){
 				ModelAndView view=new ModelAndView("redirect:/adminProveedor/");
 				return view;
@@ -151,7 +151,7 @@ public class BaseController {
 			
 			
 		}else{
-			response= "Error de autenticación. Revisa correo y/o contraseña";
+			response= "Error de autenticaciÃ³n. Revisa correo y/o contraseÃ±a";
 		}
 		
 		ModelAndView modelAndView = new ModelAndView(REGISTRO);

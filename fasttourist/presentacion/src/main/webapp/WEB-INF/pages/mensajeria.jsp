@@ -45,12 +45,12 @@
 				<c:if test="${perfil=='3'}">
 					<li><a href="/presentacion/admin/"><span
 							class="icon-home"></span> Proveedores</a></li>
-					<li><a href="/presentacion/alimentacion/"><span
-							class="icon-file"></span> Historicos</a></li>
 					<li><a href="/presentacion/admin/transacciones"><span
 							class="icon-refresh"></span> Transacciones</a></li>
 					<li><a href="/presentacion/admin/solicitudes-baja"><span
 									class="icon-ban-circle"></span> Solicitudes de Baja</a></li>
+					<li><a href="/presentacion/admin/categorias/"><span
+						class="icon-plus"></span> Categorias Adicionales</a></li>
 					<li><a href="/presentacion/mensajeria/" class="paginaActiva">
 							<span class="icon-envelope"></span> Mensajeria</a></li>
 				</c:if>

@@ -3,14 +3,18 @@
 	<div class="span9">
 		<ul class="nav nav-tabs" id="myTab">
 			<li class="active"><a href="#preguntas">Preguntas</a></li>
-			<li class=""><a href="#calificaciones">Calificación</a></li>
+			<c:if test="${moduloCalificaciones == 'true'}">
+				<li class=""><a href="#calificaciones">Calificación</a></li>
+			</c:if>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="preguntas">
 
 				<form action="#" method="post" class="form-inline">
 					<p class="buttons left">
-						<label><strong>¿Tienes una pregunta?:</strong></label> <input type="text" class="input-xxlarge" placeholder="Ingresa tu pregunta" name="inputPregunta">
+						<label><strong>¿Tienes una pregunta?:</strong></label> <input
+							type="text" class="input-xxlarge"
+							placeholder="Ingresa tu pregunta" name="inputPregunta">
 						<button class="btn btn-inverse" type="submit">Enviar</button>
 					</p>
 				</form>
@@ -43,9 +47,11 @@
 					<hr>
 				</c:forEach>
 			</div>
-			<div class="tab-pane" id="calificaciones">
-				<%@include file="moduloCalificaciones.jsp"%>
-			</div>
+			<c:if test="${moduloCalificaciones == 'true'}">
+				<div class="tab-pane" id="calificaciones">
+					<%@include file="moduloCalificaciones.jsp"%>
+				</div>
+			</c:if>
 		</div>
 	</div>
 

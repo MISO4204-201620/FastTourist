@@ -117,7 +117,7 @@ public class RestPaseos {
 //					.getSingleResult();
 //
 //			System.out.println(producto.getNombre()+": "+producto.getLugar()+": "+producto.getIdPaseosEcologicos());			
-//			System.out.println("Pero a veces también salir");
+//			System.out.println("Pero a veces tambin salir");
 //			return new ResponseEntity<Paseosecologico>(producto, HttpStatus.OK);
 //		}
 //		

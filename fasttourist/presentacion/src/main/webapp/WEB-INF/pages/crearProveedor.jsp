@@ -2,17 +2,33 @@
 <section class="navbar main-menu">
 	<div class="navbar-inner main-menu">
 		<nav id="menu" class="pull-left">
-			<ul>
-				<li><a href="/presentacion/admin/"
-					class="paginaActiva"><span class="icon-home"></span>Proveedores</a></li>
-				<li><a href="/presentacion/transporte/"><span
-						class="question-sign"></span> Respuestas</a>
-				<li><a href="/presentacion/alimentacion/"><span
-						class="icon-file"></span> Historicos</a></li>
+		<ul>
+		<c:choose>
+					<c:when test="${not empty mensaje}">
+						<li><a href="/presentacion/admin/"><span
+								class="icon-home"></span> Proveedores</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="/presentacion/admin/" class="paginaActiva"><span
+								class="icon-home"></span> Proveedores</a></li>
+					</c:otherwise>
+				</c:choose>
+				
 				<li><a href="/presentacion/admin/transacciones"><span
 						class="icon-refresh"></span> Transacciones</a></li>
-				<li><a href="/presentacion/admin/solicitudes-baja"><span
-						class="icon-ban-circle"></span> Solicitar Baja</a></li>
+
+				<c:choose>
+					<c:when test="${not empty mensaje}">
+						<li><a href="/presentacion/admin/solicitudes-baja" class="paginaActiva"><span
+								class="icon-ban-circle"></span> Solicitudes de Baja</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="/presentacion/admin/solicitudes-baja"><span
+								class="icon-ban-circle"></span> Solicitudes de Baja</a></li>
+					</c:otherwise>
+				</c:choose>
+				<li><a href="/presentacion/admin/categorias/"><span
+						class="icon-plus"></span> Categorías Adicionales</a></li>
 				<c:if test="${not empty usuarioAutenticado and moduloMensajeria}">	
 					<li><a href="/presentacion/mensajeria/">
 						<span class="icon-envelope"></span> Mensajeria</a></li>

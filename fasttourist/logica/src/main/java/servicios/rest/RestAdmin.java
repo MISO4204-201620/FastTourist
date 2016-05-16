@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import fabricas.entidades.CategoriasAdicionales;
 import fabricas.entidades.Perfiles;
 import fabricas.entidades.Servicio;
 import fabricas.entidades.Transacciones;
@@ -64,7 +65,7 @@ public class RestAdmin {
 			resultado = "Se ha eliminado el proveedor con todos sus servicios.";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			resultado="Ha ocurrido un problema. Por favor contacta soporte t�cnico";
+			resultado="Ha ocurrido un problema. Por favor contacta soporte técnico";
 			e.printStackTrace();
 		}
 		em.close();
@@ -174,6 +175,43 @@ public class RestAdmin {
 		List<Transacciones> transacciones= em.createNamedQuery("Transacciones.findAll").getResultList();
 		em.close();
 		return new ResponseEntity <List<Transacciones>> (transacciones, HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value = "/nuevaCategoria/{nombre}/{atributos}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> agregarCategoria(@PathVariable("nombre") String nombre,
+			@PathVariable("atributos") String atributos) {
+		
+		String resultado = "";
+		try{
+			EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+			CategoriasAdicionales cat = (CategoriasAdicionales) em.createNamedQuery("CategoriasAdicionales.getCategoria")
+					.setParameter("nombre", nombre)
+					.getSingleResult();
+			
+			resultado = "Ya existe un proveedor con este correo.";
+		}
+			catch(Exception e){
+				System.out.println("No encontró categoria con este nombre");
+				
+				String []att = atributos.split(",");
+				for(int i = 0; i < att.length; i ++)
+				{
+					EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+					em.getTransaction().begin();
+
+					String msj = att[i];
+					CategoriasAdicionales cate = new CategoriasAdicionales();
+					cate.setNombre(nombre);
+					cate.setAtributo(msj);
+					em.persist(cate);
+					em.getTransaction().commit();
+				}
+				
+				resultado = "Se ha agregado una nueva categoria con "+att.length+" atributos";		
+			}
+		
+		return new ResponseEntity <String> (resultado, HttpStatus.OK);
 		
 	}
 	

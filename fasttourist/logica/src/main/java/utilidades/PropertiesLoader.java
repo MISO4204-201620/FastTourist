@@ -40,7 +40,7 @@ public class PropertiesLoader {
 	public String getProperty(String prop) {
 		String pro = properties.getProperty(prop);
 		if (pro == null) {
-			System.out.println("error cargando propiedad " + prop);
+			System.out.println("error cargando propiedad 2 " + prop);
 		}
 		return pro;
 	}

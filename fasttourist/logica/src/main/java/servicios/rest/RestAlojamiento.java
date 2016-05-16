@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fabricas.entidades.Servicio;
 import fabricas.entidades.Usuario;
+import utilidades.Constantes;
+import utilidades.PropertiesLoader;
 
 
 @RestController
@@ -59,9 +61,9 @@ public class RestAlojamiento {
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
-
+		
 		String query= queryAlojamientoByFilter(filtros);	
-
+		
 		List<Servicio> alojamientos  = em.createQuery(query).getResultList();
 		em.close();
 		return new ResponseEntity <List<Servicio>> (alojamientos, HttpStatus.OK);

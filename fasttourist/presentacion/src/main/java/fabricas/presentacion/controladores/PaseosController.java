@@ -132,6 +132,7 @@ public class PaseosController {
 		modelAndView.addObject("idusuarioAutenticado",utilidades.getIdUser());
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
+		modelAndView.addObject("moduloCalificaciones", Constantes.MODULO_CALIFICACIONES);
 		return modelAndView;
 	}
 
@@ -168,7 +169,7 @@ public class PaseosController {
 		}else if(valor != null && !valor.isEmpty()){
 			String comentario = (inputComentario.isEmpty() ? "Sin comentarios":inputComentario);
 			result = restTemplate.getForObject("http://localhost:8080/logica/calificaciones/set/"+ valor +"/" +comentario +"/" +id +"/" +idUsuario, String.class); 
-		//Si se envió a agregar al carrito
+		//Si se enviÃ³ a agregar al carrito
 		}else if(carrito !=null){
 			result = restTemplate.getForObject("http://localhost:8080/logica/pagos/addCarrito/"+id+"/"+idUsuario, String.class);
 		}

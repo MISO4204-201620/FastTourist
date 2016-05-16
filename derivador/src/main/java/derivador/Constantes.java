@@ -10,7 +10,7 @@ public class Constantes {
 	
 	public static final String MODULO_BUSQUEDA_PERSONALIZADA ="ModuloBusquedaPersonalizada";
 	public static final String MODULO_MENSAJERIA ="Mensajeria";
-	public static final String MODULO_CALIFICACIONES ="CalificarServivio";
+	public static final String MODULO_CALIFICACIONES ="CalificarComentarServicio";
 	public static final String MODULO_REPORTES ="ModuloReportes";
 	
 	public static final String POM_LOCATION="/fasttouristEAR/pom.xml";

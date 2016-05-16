@@ -263,15 +263,15 @@ public class PaqueteControlador {
 			//Se recupera el id del usuario autenticado
 			Integer idUsuario = utilidades.getSessionIdUser();
 	
-			//Si se envió a almacenar una pregunta
+			//Si se enviÃ³ a almacenar una pregunta
 			if(pregunta != null && !pregunta.isEmpty()){
 				pregunta = pregunta.replace("?", "");
 				result = restTemplate.getForObject("http://localhost:8080/logica/preguntas/set/" + pregunta + "/" + id, String.class);
-			//Si se envió a almacenar una calificacion
+			//Si se enviÃ³ a almacenar una calificacion
 			}else if(valor != null && !valor.isEmpty()){
 				String comentario = (inputComentario.isEmpty() ? "Sin comentarios":inputComentario);
 				result = restTemplate.getForObject("http://localhost:8080/logica/calificaciones/set/"+ valor +"/" +comentario +"/" +id +"/" +idUsuario, String.class); 
-			//Si se envió a agregar al carrito
+			//Si se enviÃ³ a agregar al carrito
 			}else if(carrito !=null){			
 				PaqueteVO paquete = null;
 				List<ServicioVO> servicios=null;

@@ -35,7 +35,7 @@
 						<feature mandatory="true" name="PublicarFacebook"/>
 						<feature mandatory="true" name="PublicarTwitter"/>
 					</or>
-					<feature name="CalificarComentarServivio"/>
+					<feature name="CalificarComentarServicio"/>
 					<feature mandatory="true" name="ConsultarTransaccionesyVentas"/>
 				</and>
 				<and mandatory="true" name="ModuloComunicacion">

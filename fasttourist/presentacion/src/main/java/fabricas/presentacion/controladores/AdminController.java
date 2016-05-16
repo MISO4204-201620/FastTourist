@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -196,15 +197,31 @@ public class AdminController {
 		String uri = "http://localhost:8080/logica/admin/transacciones/";
 		String result = (String) restTemplate.getForObject(uri, String.class);
 		String fechas = "[";
+		String fechaAnt = "";
+		String candidato = "";
+		int contador = 0;
 		
 		try {
 			transacciones = mapper.readValue(result, new TypeReference<List<TransaccionesVO>>(){});
 			for(TransaccionesVO tr:transacciones)
 			{
 				String fe[] = tr.getFecha().toString().split(" ");
-				fechas = fechas+"{\n";
-				fechas = fechas+"'fecha'"+":'"+fe[1]+" "+fe[2]+"',\n";
-				fechas = fechas+"'valor'"+":"+"1\n}, ";
+//				fechas = fechas+"{\n";
+				if(fe[1].equals(fechaAnt)){
+					contador++;
+//					fechas = fechas+"'fecha'"+":'"+fe[1]+" "+fe[2]+"',\n";
+//					fechas = fechas+"'valor'"+":"+contador+"\n}, ";						
+					candidato = "{'fecha'"+":'"+fe[1]+" "+fe[2]+"',\n";
+					candidato = candidato+"'valor'"+":"+contador+"\n}, ";						
+				}
+				else{
+					fechas = fechas+candidato;
+					candidato = "";
+					fechas = fechas+"{'fecha'"+":'"+fe[1]+" "+fe[2]+"',\n";
+					fechas = fechas+"'valor'"+":"+"1\n}, ";	
+					contador=0;
+				}
+				fechaAnt = fe[1];
 			}		
 			fechas = fechas+"];";			
 		} catch (Exception e) {
@@ -233,9 +250,24 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/categorias/", method = RequestMethod.POST)
-	public ModelAndView categoriasPOST(){
-//			@RequestParam(value="atributo", required=true) String atributo, 
-//			@RequestParam(value="valor", required=true) String valor) {
+	public ModelAndView categoriasPOST(
+			@RequestParam(value="nombre", required=true) String nombre,
+			@RequestParam(value="atributo", required=true)String atributo){
+		
+		System.out.println("Est· entrando: "+nombre+" & "+atributo);
+		
+		RestTemplate restTemplate = new RestTemplate();
+		ObjectMapper mapper = new ObjectMapper();
+		String resultado = "";
+		
+		String uri = "http://localhost:8080/logica/admin/nuevaCategoria/"+nombre+"/"+atributo;
+		String result = (String) restTemplate.getForObject(uri, String.class);
+
+		try {
+			resultado = mapper.readValue(result, String.class);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 		
 		ModelAndView modelAndView = new ModelAndView(CATEGORIAS);
@@ -244,5 +276,6 @@ public class AdminController {
 		return modelAndView;
 		
 	}
+
 	
 }

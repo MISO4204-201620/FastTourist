@@ -71,7 +71,7 @@ public class RestCrudServicios {
 
 		em.getTransaction().begin();
 
-		//Quitar caracteres especiales de la descripción
+		//Quitar caracteres especiales de la descripciÃ³n
 		String s = servicioVO.getDescripcion().replaceAll("\\P{Print}", "");
 
 		servicio.setActivo(servicioVO.getActivo());

@@ -64,9 +64,11 @@
 				<div class="span3 col">
 					
 					<div class="block">	
+					<c:if test="${moduloCalificaciones == 'true'}">
 						<c:forEach var="i" begin="1" end="${promCalificacion}">
 						  <span class="icon-star"></span>
 						</c:forEach>
+					</c:if>
 						<br/>
 						<h4 class="title">Precio:<strong> $${servicio.precio}</strong></h4>	
 						<h4 class="title">Descuento:<strong> $${servicio.descuento}</strong></h4>

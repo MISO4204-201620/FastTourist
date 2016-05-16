@@ -8,6 +8,7 @@
 		<non-jta-data-source>java:/MySqlDS</non-jta-data-source>
 		<class>fabricas.entidades.Calificaciones</class>
 		<class>fabricas.entidades.Categoria</class>
+		<class>fabricas.entidades.CategoriasAdicionales</class>
 		<class>fabricas.entidades.EstadoTransaccion</class>
 		<class>fabricas.entidades.Log</class>
 		<class>fabricas.entidades.Paquete</class>

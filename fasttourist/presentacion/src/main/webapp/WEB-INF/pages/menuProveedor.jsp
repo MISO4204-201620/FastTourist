@@ -31,6 +31,7 @@
 			<li><a href="#">Transporte</a></li>
 			<li><a href="#">Alimentación</a></li>
 			<li><a href="#">Paseos Ecologicos</a></li>
+			<li><a href="#">Otras Categorias</a></li>			
 		</ul>
 	</div>
 	<div class="block">
