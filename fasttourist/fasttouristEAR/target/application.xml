@@ -28,4 +28,10 @@
       <context-root>/mensajeria</context-root>
     </web>
   </module>
+  <module>
+    <web>
+      <web-uri>reportes-0.0.1-SNAPSHOT.war</web-uri>
+      <context-root>/reportes</context-root>
+    </web>
+  </module>
 </application>

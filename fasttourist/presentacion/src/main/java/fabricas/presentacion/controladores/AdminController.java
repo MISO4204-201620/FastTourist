@@ -62,6 +62,7 @@ public class AdminController {
 		modelAndView.addObject("usuarioAutenticado",utilidades.getSessionUser());
 		modelAndView.addObject("proveedores", usuarios);
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloReportes", Constantes.MODULO_REPORTES);
 		
 		return modelAndView;
 	}
@@ -183,6 +184,7 @@ public class AdminController {
 		modelAndView.addObject("mensaje","Solicitudes de baja");
 		modelAndView.addObject("proveedores",proveedores);
 		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		modelAndView.addObject("moduloReportes", Constantes.MODULO_REPORTES);
 		return modelAndView;	
 	}
 	

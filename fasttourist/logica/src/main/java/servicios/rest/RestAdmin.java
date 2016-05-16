@@ -113,7 +113,7 @@ public class RestAdmin {
 	}
 
 	@RequestMapping(value = "/crear/", method = RequestMethod.POST,produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
-	public ResponseEntity<String> createProveedor(@RequestBody  UsuarioVO usuarioVO){
+	public ResponseEntity<String> createProveedor(@RequestBody  Usuario usuarioVO){
 		
 		String resultado = "";
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();

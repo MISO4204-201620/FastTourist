@@ -85,6 +85,9 @@
 							</c:when>
 							<c:otherwise>
 								<th width="10%">Eliminar</th>
+								<c:if test="${moduloReportes == 'true'}">
+									<th width="10%">Generar Reporte</th>
+								</c:if>
 							</c:otherwise>
 						</c:choose>
 					</tr>
@@ -128,7 +131,14 @@
 										class="icon-remove"></a>
 								</p>
 							</td>
-
+							<c:if test="${empty mensaje and moduloReportes == 'true'}">
+								<td>
+									<p class="buttons center">
+										<a href="/presentacion/reportes/${proveedor.idusuario}/"
+											class="icon-list-alt"></a>
+									</p>
+								</td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -137,7 +147,35 @@
 	</div>
 </section>
 
+<c:if test="${response != null}">
+	<script type="text/javascript">
+	    $(window).load(function(){
+	        $('#myModal').modal('show');
+	    });
+	</script>
+</c:if>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-sm">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					onclick="$('.modal').hide()">&times;</button>
+				<h4 class="modal-title">Información de reporte</h4>
+			</div>
+			<div class="modal-body">
+				<h5><strong style="color:#eb4800;">${response}</h5>
+			</div>
+			<div class="modal-footer">
+				<a href="/presentacion/admin/"><button class="btn btn-inverse" type="button">Aceptar</button></a>
+			</div>
+		</div>
+
+	</div>
+</div>
 
 
 
