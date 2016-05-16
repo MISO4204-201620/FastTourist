@@ -109,6 +109,7 @@ public class RestAdmin {
 		usuario.setActivo(usuarioVO.isActivo());		
 	
 		em.getTransaction().commit();
+		em.close();
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
 
@@ -189,27 +190,30 @@ public class RestAdmin {
 					.setParameter("nombre", nombre)
 					.getSingleResult();
 			
+			em.close();
+			
 			resultado = "Ya existe un proveedor con este correo.";
 		}
-			catch(Exception e){
-				System.out.println("No encontró categoria con este nombre");
-				
-				String []att = atributos.split(",");
-				for(int i = 0; i < att.length; i ++)
-				{
-					EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-					em.getTransaction().begin();
+		catch(Exception e){
+			System.out.println("No encontró categoria con este nombre");
+			
+			String []att = atributos.split(",");
+			for(int i = 0; i < att.length; i ++)
+			{
+				EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+				em.getTransaction().begin();
 
-					String msj = att[i];
-					CategoriasAdicionales cate = new CategoriasAdicionales();
-					cate.setNombre(nombre);
-					cate.setAtributo(msj);
-					em.persist(cate);
-					em.getTransaction().commit();
-				}
-				
-				resultado = "Se ha agregado una nueva categoria con "+att.length+" atributos";		
+				String msj = att[i];
+				CategoriasAdicionales cate = new CategoriasAdicionales();
+				cate.setNombre(nombre);
+				cate.setAtributo(msj);
+				em.persist(cate);
+				em.getTransaction().commit();
+				em.close();				
 			}
+			
+			resultado = "Se ha agregado una nueva categoria con "+att.length+" atributos";		
+		}
 		
 		return new ResponseEntity <String> (resultado, HttpStatus.OK);
 		

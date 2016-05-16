@@ -28,8 +28,8 @@ public class RestTransaccion {
 		List<Transacciones> tr = (List<Transacciones>) em.createNamedQuery("Transacciones.findByProvider")
 				.setParameter("id", id)
 				.getResultList();
-		
-		
+		em.close();
+				
 		return new ResponseEntity<List<Transacciones>>(tr, HttpStatus.OK);
 	} 
 
@@ -44,8 +44,8 @@ public class RestTransaccion {
 				.setParameter("id", id)
 				.getResultList();
 		
-		System.out.println("Envio rta");
-
+		em.close();
+		
 		return new ResponseEntity<List<String>>(tr, HttpStatus.OK);
 	}	 
 

@@ -73,7 +73,8 @@ public class MensajeriaControlador {
 		modelAndView.addObject("usuarios", usuarios);
 		modelAndView.addObject("perfil",utilidades.getPerfil());
 		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
-
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		
 		return modelAndView;
 	}
 
@@ -125,6 +126,7 @@ public class MensajeriaControlador {
 				utilidades.getSessionUser());
 		modelAndView.addObject("perfil",utilidades.getPerfil());
 		modelAndView.addObject("moduloBusquedas", Constantes.MODULO_BUSQUEDAS);
+		modelAndView.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		return modelAndView;
 	}
 	

@@ -9,17 +9,17 @@
 				<c:if test="${perfil=='2'}">
 					<li><a href="/presentacion/">Alojamiento</a></li>
 					<li><a href="/presentacion/transporte/">Transporte</a>
-					<li><a href="/presentacion/alimentacion/">Alimentacion</a></li>
+					<li><a href="/presentacion/alimentacion/">Alimentación</a></li>
 					<li><a href="/presentacion/paseos/paseos">Paseos
-							Turisticos</a></li>
+							Turísticos</a></li>
 					<li><a href="/presentacion/paquetes/">Paquetes</a></li>
 					<c:if test="${not empty usuarioAutenticado}">
 						<li><a href="/presentacion/mensajeria/" class="paginaActiva">
-							<span class="icon-envelope"></span> Mensajeria</a></li>
+							<span class="icon-envelope"></span> Mensajería</a></li>
 					</c:if>
 					<c:if test="${not empty usuarioAutenticado and moduloBusquedas}">
 							<li><a href="/presentacion/busquedas/">
-									<span class="icon-zoom-in"></span> Mis busquedas
+									<span class="icon-zoom-in"></span> Mis búsquedas
 							</a></li>
 						</c:if>	
 				</c:if>
@@ -27,19 +27,22 @@
 				<!-- Menu del proveedor -->
 				<c:if test="${perfil=='1'}">
 					<li><a href="/presentacion/adminProveedor/"><span
-							class="icon-home"></span> Servicios</a></li>
-					<li><a href="/presentacion/transporte/"><span
-							class="icon-question-sign"></span> Respuestas</a>
-					<li><a href="/presentacion/alimentacion/"><span
-							class="icon-file"></span> Historicos</a></li>
-					<li><a href="/presentacion/paseos/paseos"><span
-							class="icon-refresh"></span> Transacciones</a></li>
-					<li><a href="/presentacion/paquetes/"><span
-							class="icon-ban-circle"></span> Solicitar Baja</a></li>
-					<li><a href="/presentacion/adminProveedor/editar-info/"><span
-							class="icon-pencil"></span> Editar Info</a></li>
-					<li><a href="/presentacion/mensajeria/" class="paginaActiva">
-							<span class="icon-envelope"></span> Mensajeria</a></li>
+				 		class="icon-home"></span> Servicios</a></li>
+				<li><a href="/presentacion/moduloRespuestas/"><span
+						class="question-sign"></span> Respuestas</a>
+				<li><a href="/presentacion/transacciones/historicos"><span
+						class="icon-file"></span> Históricos</a></li>
+				<li><a href="/presentacion/transacciones/"><span
+						class="icon-refresh"></span> Transacciones</a></li>
+				<li><a href="/presentacion/adminProveedor/solicitarBaja/"><span
+						class="icon-ban-circle"></span> Solicitar Baja</a></li>
+				<li><a href="/presentacion/adminProveedor/editar-info/"><span
+						class="icon-pencil"></span> Editar Info</a></li>
+				<c:if test="${not empty usuarioAutenticado and moduloMensajeria}">	
+					<li><a href="/presentacion/mensajeria/"
+						class="paginaActiva">
+						<span class="icon-envelope"></span> Mensajería</a></li>
+				</c:if>	
 				</c:if>
 				<!-- Menu del administrador -->
 				<c:if test="${perfil=='3'}">
@@ -162,9 +165,6 @@
 												<div class="form-group">
 													<b>Mensaje:</b> ${mensaje.mensaje}
 												</div>
-
-
-
 											</div>
 										</div>
 									</div>
