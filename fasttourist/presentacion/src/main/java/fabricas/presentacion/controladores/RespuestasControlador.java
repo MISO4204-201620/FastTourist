@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fabricas.presentacion.VOs.PreguntasVO;
 import fabricas.presentacion.VOs.PreguntasWrapper;
+import utilidades.Constantes;
 import utilidades.utilidades;
 
 @Controller
@@ -34,7 +35,7 @@ public class RespuestasControlador {
 		ObjectMapper mapper = new ObjectMapper();
 		RestTemplate restTemplate = new RestTemplate();
 		
-		String result = restTemplate.getForObject("http://localhost:8080/logica/preguntas/get/" +utilidades.getSessionIdUser()+"/", 
+		String result = restTemplate.getForObject("http://localhost:8080/logica/preguntas/getPendents/" +utilidades.getSessionIdUser()+"/", 
 				String.class);
 		
 		try{			
@@ -50,6 +51,7 @@ public class RespuestasControlador {
 		ModelAndView mav = new ModelAndView(VIEW_PREGUNTAS);
 		mav.addObject("preguntasWrapper", wrapper);		
 		mav.addObject("usuarioAutenticado", utilidades.getSessionUser());
+		mav.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
 		
 		return mav;
 	}
@@ -57,13 +59,12 @@ public class RespuestasControlador {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ModelAndView editarPreguntas(@ModelAttribute(value = "preguntasWrapper") PreguntasWrapper preguntas) {
 	
-		System.out.println("Llega");
 		for(PreguntasVO pregunta : preguntas.getPreguntas()){
-			if(pregunta.getRespuesta() != null){
+			if(pregunta.getRespuesta() != null || pregunta.getRespuesta() != ""){
 				RestTemplate restTemplate = new RestTemplate();
 				
 				try{
-				String result = restTemplate.getForObject("http://localhost:8080/logica/preguntas/setRespuesta/" + 
+				restTemplate.getForObject("http://localhost:8080/logica/preguntas/setRespuesta/" + 
 						pregunta.getRespuesta() + "/" + pregunta.getIdPreguntas(), String.class);
 				}
 				catch(Exception e){

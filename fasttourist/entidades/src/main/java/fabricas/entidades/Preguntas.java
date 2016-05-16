@@ -18,7 +18,8 @@ import java.util.Date;
 @Table(name="preguntas")
 @NamedQueries({
 	@NamedQuery(name="Preguntas.findAll", query="SELECT p FROM Preguntas p"),
-	@NamedQuery(name="Preguntas.findAllByUserId", query="SELECT p FROM Preguntas p WHERE p.servicio.usuario.idusuario = :id")
+	@NamedQuery(name="Preguntas.findAllByUserId", query="SELECT p FROM Preguntas p WHERE p.servicio.usuario.idusuario = :id"),
+	@NamedQuery(name="Preguntas.findPendentsByUserId", query="SELECT p FROM Preguntas p WHERE p.servicio.usuario.idusuario = :id and p.respuesta is null")
 })
 public class Preguntas implements Serializable {
 	private static final long serialVersionUID = 1L;

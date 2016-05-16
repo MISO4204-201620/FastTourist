@@ -57,7 +57,21 @@ public class RestPreguntas {
 		return new ResponseEntity<List<Preguntas>>(preguntas, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/set/{respuesta}/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/getPendents/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Preguntas>> getPendentsByUserId(@PathVariable int id) {
+
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+		
+		List<Preguntas> preguntas = (List<Preguntas>) em.createNamedQuery("Preguntas.findPendentsByUserId")
+				.setParameter("id", id)
+				.getResultList();
+		em.close();
+		return new ResponseEntity<List<Preguntas>>(preguntas, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/setRespuesta/{respuesta}/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> setRespuesta(@PathVariable int id, @PathVariable String respuesta) {
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
@@ -75,6 +89,7 @@ public class RestPreguntas {
 		em.persist(pregunta);
 		em.getTransaction().commit();
 		em.close();
+		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 }

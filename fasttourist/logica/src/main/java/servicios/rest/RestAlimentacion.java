@@ -94,7 +94,8 @@ public class RestAlimentacion {
 		Servicio alimentacion = (Servicio) em.createNamedQuery("Servicio.findAlimentacionById")
 				.setParameter("id", id)
 				.getSingleResult();
-						
+		em.close();
+				
 		return new ResponseEntity<Servicio>(alimentacion, HttpStatus.OK);
 	}
 

@@ -5,24 +5,24 @@
 			<c:choose>
 				<c:when test="${not empty esProveedor}">
 					<ul>
-						<li><a href="/presentacion/adminProveedor/"><span class="icon-home"></span>
-								Servicios</a></li>
-						<li><a href="/presentacion/transporte/"><span
+						<li><a href="/presentacion/adminProveedor/"><span
+						 		class="icon-home"></span> Servicios</a></li>
+						<li><a href="/presentacion/moduloRespuestas/"><span
 								class="question-sign"></span> Respuestas</a>
-						<li><a href="/presentacion/alimentacion/"><span
-								class="icon-file"></span> Historicos</a></li>
-						<li><a href="/presentacion/paseos/paseos"><span
+						<li><a href="/presentacion/transacciones/historicos"><span
+								class="icon-file"></span> Históricos</a></li>
+						<li><a href="/presentacion/transacciones/"><span
 								class="icon-refresh"></span> Transacciones</a></li>
-						<li><a href="/presentacion/paquetes/"><span
+						<li><a href="/presentacion/adminProveedor/solicitarBaja/"><span
 								class="icon-ban-circle"></span> Solicitar Baja</a></li>
 						<li><a href="/presentacion/adminProveedor/editar-info/"
-							class="paginaActiva"><span class="icon-pencil"></span> Editar Info</a></li>
+								class="paginaActiva"><span
+								class="icon-pencil"></span> Editar Info</a></li>
 						<c:if test="${not empty usuarioAutenticado and moduloMensajeria}">	
 							<li><a href="/presentacion/mensajeria/">
-								<span class="icon-envelope"></span> Mensajeria</a></li>
+								<span class="icon-envelope"></span> Mensajería</a></li>
 						</c:if>	
 					</ul>
-
 				</c:when>
 				<c:otherwise>
 
@@ -32,14 +32,14 @@
 						<li><a href="/presentacion/transporte/"><span
 								class="question-sign"></span> Respuestas</a>
 						<li><a href="/presentacion/alimentacion/"><span
-								class="icon-file"></span> Historicos</a></li>
+								class="icon-file"></span> Históricos</a></li>
 						<li><a href="/presentacion/admin/transacciones"><span
 								class="icon-refresh"></span> Transacciones</a></li>
 						<li><a href="/presentacion/admin/solicitudes-baja"><span
 								class="icon-ban-circle"></span> Solicitudes de Baja</a></li>
 						<c:if test="${not empty usuarioAutenticado}">	
 							<li><a href="/presentacion/mensajeria/">
-								<span class="icon-envelope"></span> Mensajeria</a></li>
+								<span class="icon-envelope"></span> Mensajería</a></li>
 						</c:if>	
 					</ul>
 				</c:otherwise>
@@ -68,11 +68,7 @@
 
 			</c:otherwise>
 		</c:choose>
-
-
-
 		<div class="span9 col">
-
 			<form:form action="#" method="post" class="form-stacked"
 				commandName="proveedor">
 				<table style="width: 80%; margin: 0px auto !important;">

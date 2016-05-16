@@ -3,13 +3,23 @@
 	<div class="navbar-inner main-menu">
 		<nav id="menu" class="pull-left">
 			<ul>
-				<li><a href="/presentacion/adminProveedor/" ><span class="icon-home"></span> Servicios</a></li>
-				<li><a href="/presentacion/moduloRespuestas/"><span class="question-sign"></span> Respuestas</a>
-				<li><a href="/presentacion/transacciones/historicos/" class="paginaActiva"><span class="icon-file"></span> Históricos</a></li>
-				<li><a href="/presentacion/admin/transacciones/"><span
+				<li><a href="/presentacion/adminProveedor/"><span
+				 		class="icon-home"></span> Servicios</a></li>
+				<li><a href="/presentacion/moduloRespuestas/"><span
+						class="question-sign"></span> Respuestas</a>
+				<li><a href="/presentacion/transacciones/historicos"
+						class="paginaActiva"><span
+						class="icon-file"></span> Históricos</a></li>
+				<li><a href="/presentacion/transacciones/"><span
 						class="icon-refresh"></span> Transacciones</a></li>
 				<li><a href="/presentacion/adminProveedor/solicitarBaja/"><span
 						class="icon-ban-circle"></span> Solicitar Baja</a></li>
+				<li><a href="/presentacion/adminProveedor/editar-info/"><span
+						class="icon-pencil"></span> Editar Info</a></li>
+				<c:if test="${not empty usuarioAutenticado and moduloMensajeria}">	
+					<li><a href="/presentacion/mensajeria/">
+						<span class="icon-envelope"></span> Mensajería</a></li>
+				</c:if>	
 			</ul>
 		</nav>
 	</div>

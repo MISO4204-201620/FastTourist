@@ -227,5 +227,31 @@ public class CrudControlador {
 		return view;
 	}
 	
+	@RequestMapping(value = "/solicitarBaja/", method = RequestMethod.GET)
+	public ModelAndView solicitarBajaGet(){
+				
+		ModelAndView view=new ModelAndView("solicitarBaja");
+		view.addObject("moduloMensajeria", Constantes.MODULO_MENSAJERIA);
+		view.addObject("usuarioAutenticado",utilidades.getSessionUser());
+		
+		return view;		
+	}
 	
+	@RequestMapping(value = "/solicitarBaja/", method = RequestMethod.POST)
+	public ModelAndView solicitarBajaPost(){
+		
+		RestTemplate restTemplate = new RestTemplate();
+
+		String url = "http://localhost:8080/logica/registro/solicitarBaja/"+utilidades.getSessionIdUser() +"/";
+
+		try {
+			restTemplate.getForObject(url, String.class);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		ModelAndView view=new ModelAndView("redirect:/adminProveedor/");
+		return view;
+		
+	}
 }
