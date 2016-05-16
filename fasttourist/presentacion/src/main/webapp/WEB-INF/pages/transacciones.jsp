@@ -33,7 +33,7 @@
 								class="icon-home"></span> Proveedores</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/presentacion/admin/" class="paginaActiva"><span
+						<li><a href="/presentacion/admin/"><span
 								class="icon-home"></span> Proveedores</a></li>
 					</c:otherwise>
 				</c:choose>
@@ -43,7 +43,7 @@
 
 				<c:choose>
 					<c:when test="${not empty mensaje}">
-						<li><a href="/presentacion/admin/solicitudes-baja" class="paginaActiva"><span
+						<li><a href="/presentacion/admin/solicitudes-baja"><span
 								class="icon-ban-circle"></span> Solicitudes de Baja</a></li>
 					</c:when>
 					<c:otherwise>
