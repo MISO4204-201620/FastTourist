@@ -39,20 +39,14 @@
 						<thead>
 							<tr>
 								<th width="60%">Servicio</th>
-								<th width="30%">Cantidad</th>
-								<th width="10%">Detalle</th>									
+								<th width="40%">Cantidad</th>
+																	
 							</tr>
 						</thead>
 						<c:forEach varStatus="ts" var="transaccion" items="${transacciones}">								
 							<tr>
 								<td><span style="color: #eb4800">${transaccion.key}</span>												
 								<td><span style="color: #eb4800">${transaccion.value}</span>
-								<td>
-									<p class="buttons center">
-										<a href="/presentacion/admin/editar/${proveedor.idusuario}/"
-											class="icon-zoom-in"></a>
-									</p>
-								</td>
 							</tr>	
 						</c:forEach>
 					</table>
