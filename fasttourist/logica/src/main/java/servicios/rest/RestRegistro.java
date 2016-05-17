@@ -96,7 +96,7 @@ public class RestRegistro {
 		}
 	}
 	
-	@RequestMapping(value = "/solicitarBaja/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/solicitarBaja/{id}/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> solicitarBaja(@PathVariable int id) {
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();

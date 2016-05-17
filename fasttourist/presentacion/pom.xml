@@ -125,11 +125,11 @@
   </dependencies>
   <properties>
     <logback.version>1.0.13</logback.version>
-    <spring.version>4.1.1.RELEASE</spring.version>
     <jdk.version>1.7</jdk.version>
+    <spring.version>4.1.1.RELEASE</spring.version>
     <jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
     <jackson.version>2.5.3</jackson.version>
-    <junit.version>4.11</junit.version>
     <jstl.version>1.2</jstl.version>
+    <junit.version>4.11</junit.version>
   </properties>
 </project>

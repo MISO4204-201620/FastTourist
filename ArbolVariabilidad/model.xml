@@ -31,10 +31,6 @@
 				<and mandatory="true" name="ModuloCompras">
 					<feature mandatory="true" name="AgregarCarrito"/>
 					<feature mandatory="true" name="ComprarServicio"/>
-					<or name="PublicarEnRedes">
-						<feature mandatory="true" name="PublicarFacebook"/>
-						<feature mandatory="true" name="PublicarTwitter"/>
-					</or>
 					<feature name="CalificarComentarServicio"/>
 					<feature mandatory="true" name="ConsultarTransaccionesyVentas"/>
 				</and>
@@ -43,47 +39,14 @@
 					<feature name="Mensajeria"/>
 				</and>
 				<and mandatory="true" name="ModuloRegistro">
-					<and mandatory="true" name="RegistrarCliente">
-						<feature mandatory="true" name="RegistroLocal"/>
-						<feature name="RegistroFacebook"/>
-						<feature name="RegistroTwitter"/>
-					</and>
-					<and mandatory="true" name="Autenticar">
-						<feature mandatory="true" name="AutenticacionLocal"/>
-						<feature name="AutenticacionFacebook"/>
-						<feature name="AutenticacionTwitter"/>
-					</and>
+					<feature mandatory="true" name="RegistroLocal"/>
+					<feature mandatory="true" name="AutenticacionLocal"/>
 				</and>
 				<feature name="ModuloReportes"/>
 				<feature name="ModuloBusquedaPersonalizada"/>
 			</and>
 		</struct>
-		<constraints>
-			<rule>
-				<imp>
-					<var>AutenticacionFacebook</var>
-					<var>RegistroFacebook</var>
-				</imp>
-			</rule>
-			<rule>
-				<imp>
-					<var>AutenticacionTwitter</var>
-					<var>RegistroTwitter</var>
-				</imp>
-			</rule>
-			<rule>
-				<imp>
-					<var>PublicarFacebook</var>
-					<var>AutenticacionFacebook</var>
-				</imp>
-			</rule>
-			<rule>
-				<imp>
-					<var>PublicarTwitter</var>
-					<var>AutenticacionTwitter</var>
-				</imp>
-			</rule>
-		</constraints>
+		<constraints/>
 		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
 		<comments/>
 		<featureOrder userDefined="false"/>

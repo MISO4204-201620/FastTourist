@@ -56,12 +56,13 @@ public class RestAdmin {
 			List<Servicio> servicios = (List<Servicio>) em.createNamedQuery("Servicio.findByProveedor")
 					.setParameter("idProveedor", id).getResultList();
 			
-			em.remove(usuario);
+			usuario.setActivo(false);
 			em.getTransaction().commit();
+			/*em.remove(usuario);
 			RestCrudServicios restServicios = new RestCrudServicios();
 			for(Servicio serv: servicios){
 				restServicios.deleteAlojamiento(serv.getIdservicios());
-			}
+			}*/
 			resultado = "Se ha eliminado el proveedor con todos sus servicios.";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -93,7 +94,7 @@ public class RestAdmin {
 	
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST,produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
-	public ResponseEntity<Usuario> updateProveedor(@RequestBody  UsuarioVO usuarioVO){
+	public ResponseEntity<UsuarioVO> updateProveedor(@RequestBody  UsuarioVO usuarioVO){
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 
@@ -110,11 +111,11 @@ public class RestAdmin {
 	
 		em.getTransaction().commit();
 		em.close();
-		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+		return new ResponseEntity<UsuarioVO>(usuarioVO, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/crear/", method = RequestMethod.POST,produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
-	public ResponseEntity<String> createProveedor(@RequestBody  Usuario usuarioVO){
+	@RequestMapping(value = "/crear/", consumes=MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST,produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
+	public ResponseEntity<String> createProveedor(@RequestBody  UsuarioVO usuarioVO){
 		
 		String resultado = "";
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();

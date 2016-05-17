@@ -65,7 +65,7 @@ public class RestPaquetes {
 
 	}
 
-	/*@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/{filtros}", 
 	method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
 	public ResponseEntity <List<Paquete>> getPaquetesByFilter(@PathVariable String filtros) {
@@ -79,7 +79,7 @@ public class RestPaquetes {
 
 		return new ResponseEntity <List<Paquete>> (paquetes, HttpStatus.OK);
 
-	}*/
+	}
 
 	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
 	public ResponseEntity<Paquete> getPaquete(@PathVariable int id) {
@@ -117,7 +117,7 @@ public class RestPaquetes {
 	
 	
 	@RequestMapping(value = "/edit/", method = RequestMethod.POST,produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
-	public ResponseEntity<Paquete> updatePaquete(@RequestBody  PaqueteVO paqueteVO){
+	public ResponseEntity<PaqueteVO> updatePaquete(@RequestBody  PaqueteVO paqueteVO){
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 
@@ -153,12 +153,12 @@ public class RestPaquetes {
 		
 		em.getTransaction().commit();
 		em.close();
-		return new ResponseEntity<Paquete>(paquete, HttpStatus.OK);
+		return new ResponseEntity<PaqueteVO>(paqueteVO, HttpStatus.OK);
 	}
 	
 	
 	@RequestMapping(value = "/create/", method = RequestMethod.POST,produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
-	public ResponseEntity<Paquete> createPaquete(@RequestBody  PaqueteVO paqueteVO){
+	public ResponseEntity<PaqueteVO> createPaquete(@RequestBody  PaqueteVO paqueteVO){
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 
@@ -196,7 +196,7 @@ public class RestPaquetes {
 		
 		em.getTransaction().commit();
 		em.close();
-		return new ResponseEntity<Paquete>(paquete, HttpStatus.OK);
+		return new ResponseEntity<PaqueteVO>(paqueteVO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/delete/{id}/", method = RequestMethod.DELETE)

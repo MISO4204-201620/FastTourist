@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import fabricas.entidades.*;
 import fabricas.entidades.VOs.MensajeriaVO;
+import fabricas.mensajeria.InterfaceMensajeria;
 import fabricas.mensajeria.ServiciosMensajeria;
 
 
@@ -16,13 +17,14 @@ import fabricas.mensajeria.ServiciosMensajeria;
 @RequestMapping("/")
 public class RestMensajeria {
 	private static final String DECODE="; charset=UTF-8";
+	private InterfaceMensajeria interfaz = null;
 	
 	//Crear nuevo mensaje
 	@RequestMapping(value = "/", 
 			method = RequestMethod.POST, 
 			produces={MediaType.APPLICATION_JSON_VALUE +DECODE})
 	public ResponseEntity<Mensajeria> mensajes(@RequestBody  MensajeriaVO mensaje) {
-		ServiciosMensajeria servicio = new ServiciosMensajeria();
+		interfaz = new ServiciosMensajeria();
 		
 		//Se crea la entidad mensaje
 		Mensajeria msg = new Mensajeria();
@@ -38,7 +40,7 @@ public class RestMensajeria {
 		msg.setDestinatario(destinatario);
 		msg.setRemitente(remitente);
 		
-		Mensajeria enviado = servicio.enviarMensaje(msg);
+		Mensajeria enviado = interfaz.enviarMensaje(msg);
 		return new ResponseEntity<Mensajeria>(enviado, HttpStatus.OK);
 	}
 
@@ -47,8 +49,8 @@ public class RestMensajeria {
 			method = RequestMethod.GET, 
 			produces={MediaType.APPLICATION_JSON_VALUE +DECODE})
 	public ResponseEntity<Mensajeria> mensajes(@PathVariable int id) {
-		ServiciosMensajeria servicio = new ServiciosMensajeria();
-		Mensajeria mensaje = servicio.getMensaje(id);
+		interfaz = new ServiciosMensajeria();
+		Mensajeria mensaje = interfaz.getMensaje(id);
 		return new ResponseEntity<Mensajeria>(mensaje, HttpStatus.OK);
 	}
 	
@@ -66,8 +68,8 @@ public class RestMensajeria {
 			method = RequestMethod.GET, 
 			produces={MediaType.APPLICATION_JSON_VALUE +DECODE})
 	public ResponseEntity<List<Mensajeria>> mensajesRecibidosUsuario(@PathVariable int id) {
-		ServiciosMensajeria servicio = new ServiciosMensajeria();
-		List<Mensajeria> Mensajes = servicio.cargarMensajesRecibidos(id);
+		interfaz = new ServiciosMensajeria();
+		List<Mensajeria> Mensajes = interfaz.cargarMensajesRecibidos(id);
 		return new ResponseEntity<List<Mensajeria>>(Mensajes, HttpStatus.OK);
 	}
 	
@@ -76,8 +78,8 @@ public class RestMensajeria {
 			method = RequestMethod.GET, 
 			produces={MediaType.APPLICATION_JSON_VALUE +DECODE})
 	public ResponseEntity<List<Mensajeria>> mensajesEnviadosUsuario(@PathVariable int id) {
-		ServiciosMensajeria servicio = new ServiciosMensajeria();
-		List<Mensajeria> Mensajes = servicio.cargarMensajesEnviados(id);
+		interfaz = new ServiciosMensajeria();
+		List<Mensajeria> Mensajes = interfaz.cargarMensajesEnviados(id);
 		return new ResponseEntity<List<Mensajeria>>(Mensajes, HttpStatus.OK);
 	}
 }

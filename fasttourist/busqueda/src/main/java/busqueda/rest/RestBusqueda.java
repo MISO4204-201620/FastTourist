@@ -63,7 +63,7 @@ public class RestBusqueda {
 		List<Busquedas> busquedas = (List<Busquedas>) em
 				.createNamedQuery("Busquedas.findByUser")
 				.setParameter("iduser", iduser).getResultList();
-
+		em.close();
 		return new ResponseEntity<List<Busquedas>>(busquedas, HttpStatus.OK);
 
 	}

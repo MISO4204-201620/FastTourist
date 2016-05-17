@@ -63,7 +63,7 @@ public class RestCrudServicios {
 	}
 
 	@RequestMapping(value = "/edit/", method = RequestMethod.POST,produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
-	public ResponseEntity<Servicio> updateAlojamiento(@RequestBody  ServicioVO servicioVO){
+	public ResponseEntity<ServicioVO> updateAlojamiento(@RequestBody  ServicioVO servicioVO){
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 
@@ -123,11 +123,11 @@ public class RestCrudServicios {
 
 		em.getTransaction().commit();
 		em.close();
-		return new ResponseEntity<Servicio>(servicio, HttpStatus.OK);
+		return new ResponseEntity<ServicioVO>(servicioVO, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/create/", method = RequestMethod.POST,produces={MediaType.APPLICATION_JSON_VALUE +"; charset=UTF-8"})
-	public ResponseEntity<Servicio> createAlojamiento(@RequestBody  ServicioVO servicioVO){
+	public ResponseEntity<ServicioVO> createAlojamiento(@RequestBody  ServicioVO servicioVO){
 
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 
@@ -211,7 +211,7 @@ public class RestCrudServicios {
 		em.persist(servicio);
 		em.getTransaction().commit();
 		em.close();
-		return new ResponseEntity<Servicio>(servicio, HttpStatus.OK);
+		return new ResponseEntity<ServicioVO>(servicioVO, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/delete/{id}/", method = RequestMethod.DELETE)
